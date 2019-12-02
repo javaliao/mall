@@ -8,8 +8,13 @@ import org.springframework.web.bind.annotation.GetMapping;
 @Api(tags = "JumpController",description = "跳转管理")
 public class JumpController {
 
-    @GetMapping("/jump")
+    @GetMapping("/Jump")
     public String Jump(){
         return "main";
+    }
+
+    @GetMapping("/toModify")
+    public String toModify(){
+        return "product/modify";
     }
 }

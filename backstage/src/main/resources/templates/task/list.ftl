@@ -128,74 +128,56 @@
               <div class="panel-heading">
                 <h3 class="panel-title"><i class="glyphicon glyphicon-th"></i> 数据列表</h3>
               </div>
-              <div class="panel-body">
-<form class="form-inline" role="form" style="float:left;">
-  <div class="form-group has-feedback">
-    <div class="input-group">
-      <div class="input-group-addon">查询条件</div>
-      <input class="form-control has-success" type="text" placeholder="请输入查询条件">
-    </div>
-  </div>
-  <button type="button" class="btn btn-warning"><i class="glyphicon glyphicon-search"></i> 查询</button>
-</form>
-<br>
- <hr style="clear:both;">
-          <div class="table-responsive">
-            <table class="table  table-bordered">
-              <#if !Request.taskMapList??>
-                <tr><td>目前没有任何待审核的申请</td></tr>
-              </#if>
-              <#if Request.taskMapList??>
-                  <thead>
-                    <tr >
-                      <th width="30">#</th>
-                      <th>任务名称</th>
-                      <th>申请会员</th>
-                      <th>查看详细信息</th>
-                      <th width="100">操作</th>
-                    </tr>
-                  </thead>
-                  <tbody>
-                    <#list Request.taskMapList as taskMap>
-                    <tr>
-                      <td>${taskMap.taskId}</td>
-                      <td>${taskMap.taskName}</td>
-                      <td>${taskMap.loginAcc}</td>
-                      <td>
-                        <a href="#">查看详细信息</a>
-                      </td>
-                      <td>
-                          <a href="/manager/consumer/do/approval/true/${taskMap.taskId}" class="btn btn-success btn-xs"><i class=" glyphicon glyphicon-check"></i></a>
-                          <a href="/manager/consumer/do/approval/false/${taskMap.taskId}" class="btn btn-danger btn-xs"><i class=" glyphicon glyphicon-remove"></i></a>
-                      </td>
-                    </tr>
-                    </#list>
-                  </tbody>
-              </#if>
-            </table>
-          </div>
+            <div class="panel-body">
+                <form class="form-inline" role="form" style="float:left;">
+                  <div class="form-group has-feedback">
+                    <div class="input-group">
+                      <div class="input-group-addon">查询条件</div>
+                      <input class="form-control has-success" type="text" placeholder="请输入查询条件">
+                    </div>
+                  </div>
+                  <button type="button" class="btn btn-warning"><i class="glyphicon glyphicon-search"></i> 查询</button>
+                </form><br>
+                  <hr style="clear:both;">
+                  <div class="table-responsive">
+                    <table class="table  table-bordered">
+                      <#if !Request.taskMapList??>
+                        <tr><td>目前没有任何待审核的申请</td></tr>
+                      </#if>
+                      <#if Request.taskMapList??>
+                          <thead>
+                            <tr >
+                              <th width="30">#</th>
+                              <th>任务名称</th>
+                              <th>申请会员</th>
+                              <th>查看详细信息</th>
+                              <th width="100">操作</th>
+                            </tr>
+                          </thead>
+                          <tbody>
+                            <#list Request.taskMapList as taskMap>
+                            <tr>
+                              <td>${taskMap.taskId}</td>
+                              <td>${taskMap.taskName}</td>
+                              <td>${taskMap.loginAcc}</td>
+                              <td>
+                                <a href="#">查看详细信息</a>
+                              </td>
+                              <td>
+                                  <a href="/manager/consumer/do/approval/true/${taskMap.taskId}" class="btn btn-success btn-xs"><i class=" glyphicon glyphicon-check"></i></a>
+                                  <a href="/manager/consumer/do/approval/false/${taskMap.taskId}" class="btn btn-danger btn-xs"><i class=" glyphicon glyphicon-remove"></i></a>
+                              </td>
+                            </tr>
+                            </#list>
+                          </tbody>
+                      </#if>
+                    </table>
+                  </div>
               </div>
             </div>
         </div>
       </div>
     </div>
-
-    <script src="/jquery/jquery-2.1.1.min.js"></script>
-    <script src="/bootstrap/js/bootstrap.min.js"></script>
-    <script src="/script/docs.min.js"></script>
-        <script type="text/javascript">
-            $(function () {
-                $(".list-group-item").click(function(){
-                    if ( $(this).find("ul") ) {
-                        $(this).toggleClass("tree-closed");
-                        if ( $(this).hasClass("tree-closed") ) {
-                            $("ul", this).hide("fast");
-                        } else {
-                            $("ul", this).show("fast");
-                        }
-                    }
-                });
-            });
-        </script>
+    <#include "../common/foot.ftl">
   </body>
 </html>
