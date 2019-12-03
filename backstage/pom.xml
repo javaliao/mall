@@ -161,6 +161,25 @@
             <artifactId>lombok</artifactId>
             <version>1.16.18</version>
         </dependency>
+        <!--fastdfs文件上传-->
+        <!-- https://mvnrepository.com/artifact/net.oschina.zcx7878/fastdfs-client-java -->
+        <dependency>
+            <groupId>net.oschina.zcx7878</groupId>
+            <artifactId>fastdfs-client-java</artifactId>
+            <version>1.27.0.0</version>
+        </dependency>
+        <!--actuator是spring boot中非常重要的一大功能，主要用于在项目运行时，查看运行中的各种配置及参数等-->
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-actuator</artifactId>
+        </dependency>
+        <!--修改代码自动重启-->
+        <!--1.修改pom.xml的依赖，也算是修改代码，也会重启，但不会重载你修改的依赖jar-->
+        <!--2.修改前端代码不会触发重启-->
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-devtools</artifactId>
+        </dependency>
     </dependencies>
 
     <build>

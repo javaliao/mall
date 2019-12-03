@@ -14,6 +14,12 @@ public class JumpController {
         return "main";
     }
 
+    @GetMapping("/toError")
+    public String toError(String message,ModelMap modelMap){
+        modelMap.addAttribute("ex",message);
+        return "error/exceptionCatch";
+    }
+
     @GetMapping("/toModify")
     public String toModify(){
         return "product/modify";

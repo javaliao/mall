@@ -2,29 +2,25 @@ package com.javaliao.backstage.controller;
 
 import com.javaliao.backstage.bean.TbProduct;
 import com.javaliao.backstage.mapper.ProductMapper;
-import com.javaliao.backstage.util.CollectionTool;
-import com.javaliao.backstage.util.StringTool;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
-import org.hibernate.validator.internal.util.CollectionHelper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
 import java.util.List;
 
 @Controller
 @Api(tags = "ProductController",description = "商品管理")
-public class ProductController {
+public class ProductController extends BaseController{
 
     @Autowired
     ProductMapper productMapper;
 
     @ApiOperation("获取商品列表")
     @GetMapping("/getProductList")
-    public String getProductList(ModelMap modelMap){
+    public String getProductList(ModelMap modelMap) throws Exception {
         List<TbProduct> tbProducts = productMapper.selectAll();
         modelMap.addAttribute("tbProducts",tbProducts);
         return "product/list";
