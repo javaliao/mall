@@ -42,10 +42,10 @@
                     <hr style="clear:both;">
                     <div class="table-responsive">
                         <table class="table  table-bordered">
-                            <#if !Request.taskMapList??>
+                            <#if !Request.tbProducts??>
                                 <tr><td>目前没有商品数据</td></tr>
                             </#if>
-                            <#if Request.taskMapList??>
+                            <#if Request.tbProducts??>
                                 <thead>
                                 <tr >
                                     <th>商品编号</th>
@@ -71,8 +71,8 @@
                                             <td>${tbProduct.productIcon}</td>
                                             <td><a href="#">查看详细信息</a></td>
                                             <td>
-                                                <a href="#" class="btn btn-success btn-xs"><i class=" glyphicon glyphicon-check"></i></a>
-                                                <a href="#" class="btn btn-danger btn-xs"><i class=" glyphicon glyphicon-remove"></i></a>
+                                                <a href='/toModifyById?productId=${tbProduct.id}' class="btn btn-success btn-xs"><i class=" glyphicon glyphicon-check"></i></a>
+                                                <a href="/removeProduct?productId=${tbProduct.id}" class="btn btn-danger btn-xs"><i class=" glyphicon glyphicon-remove"></i></a>
                                             </td>
                                         </tr>
                                     </#list>

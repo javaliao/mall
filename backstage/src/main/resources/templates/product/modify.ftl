@@ -65,8 +65,9 @@
                         </form>
                     </#if>
                     <#if Request.tbProduct??>
-                        <form action="" datatype="json" method="post">
+                        <form action="/updateProduct" enctype="application/x-www-form-urlencoded" method="POST">
                             <table>
+                                <input type="hidden" name="id" value="${tbProduct.id}">
                                 <tr>
                                     <td width="500">商品编号</td>
                                     <td><input type="text" name="productSn" value="${tbProduct.productSn}"></td>

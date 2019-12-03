@@ -1,10 +1,21 @@
 package com.javaliao.backstage.bean;
 
 
-public class TbProduct {
+import javax.persistence.Column;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import java.io.Serializable;
 
-  private long id;
-  private long sellerId;
+public class TbProduct implements Serializable {
+
+  //表单类型都为String，所以这里将类型转换成String
+  @Id
+  @Column
+  @GeneratedValue(strategy = GenerationType.IDENTITY)
+  private String id;
+  @Column
+  private Long sellerId;
   private String productSn;
   private String productName;
   private String productPic;
@@ -32,20 +43,20 @@ public class TbProduct {
   private long isDelete;
 
 
-  public long getId() {
+  public String getId() {
     return id;
   }
 
-  public void setId(long id) {
+  public void setId(String id) {
     this.id = id;
   }
 
 
-  public long getSellerId() {
+  public Long getSellerId() {
     return sellerId;
   }
 
-  public void setSellerId(long sellerId) {
+  public void setSellerId(Long sellerId) {
     this.sellerId = sellerId;
   }
 
