@@ -30,7 +30,7 @@
                 </div>
                 <div class="panel-body">
                     <#if !Request.tbProduct??>
-                        <form action="/insertProduct" enctype="application/x-www-form-urlencoded" method="POST">
+                        <form action="/productController/insertProduct" enctype="application/x-www-form-urlencoded" method="POST">
                             <table>
                                 <tr>
                                     <td width="500">商品编号</td>
@@ -65,7 +65,7 @@
                         </form>
                     </#if>
                     <#if Request.tbProduct??>
-                        <form action="/updateProduct" enctype="application/x-www-form-urlencoded" method="POST">
+                        <form action="/productController/updateProduct" enctype="application/x-www-form-urlencoded" method="POST">
                             <table>
                                 <input type="hidden" name="id" value="${tbProduct.id}">
                                 <tr>

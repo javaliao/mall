@@ -36,10 +36,10 @@
                 <span><i class="glyphicon glyphicon-th-large"></i> 业务管理 <span class="badge" style="float:right">7</span></span>
                 <ul style="margin-top:10px;display:none;">
                     <li style="height:30px;">
-                        <a href="/getProductList"><i class="glyphicon glyphicon-picture"></i> 商品管理</a>
+                        <a href="/productController/getProductList"><i class="glyphicon glyphicon-picture"></i> 商品管理</a>
                     </li>
                     <li style="height:30px;">
-                        <a href="type.html"><i class="glyphicon glyphicon-equalizer"></i> 分类管理</a>
+                        <a href="/productController/getProductCategoryList"><i class="glyphicon glyphicon-equalizer"></i> 商品分类管理</a>
                     </li>
                     <li style="height:30px;">
                         <a href="/manager/consumer/process/definition/list"><i class="glyphicon glyphicon-random"></i> 流程管理</a>

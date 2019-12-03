@@ -1,10 +1,18 @@
 package com.javaliao.backstage.bean;
 
+import javax.persistence.Column;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
 
 public class TbProductCategory {
-
-  private long id;
-  private long parentId;
+  //表单类型都为String，所以这里将类型转换成String
+  @Id
+  @Column
+  @GeneratedValue(strategy = GenerationType.IDENTITY)
+  private String id;
+  @Column
+  private String parentId;
   private String categoryName;
   private String categoryIcon;
   private String categoryDownProductCount;
@@ -13,23 +21,21 @@ public class TbProductCategory {
   private long isDelete;
 
 
-  public long getId() {
+  public String getId() {
     return id;
   }
 
-  public void setId(long id) {
+  public void setId(String id) {
     this.id = id;
   }
 
-
-  public long getParentId() {
+  public String getParentId() {
     return parentId;
   }
 
-  public void setParentId(long parentId) {
+  public void setParentId(String parentId) {
     this.parentId = parentId;
   }
-
 
   public String getCategoryName() {
     return categoryName;

@@ -37,45 +37,41 @@
                             </div>
                         </div>
                         <button type="button" class="btn btn-warning"><i class="glyphicon glyphicon-search"></i> 查询</button>
-                        <button type="button" class="btn btn-warning"><a href="/jumpController/toProductModify"> <i class="glyphicon glyphicon-search"></i> 添加</a></button>
+                        <button type="button" class="btn btn-warning"><a href="/jumpController/toProductCategoryModify"> <i class="glyphicon glyphicon-search"></i> 添加</a></button>
                     </form><br>
                     <hr style="clear:both;">
                     <div class="table-responsive">
                         <table class="table  table-bordered">
-                            <#if !Request.tbProducts??>
-                                <tr><td>目前没有商品数据</td></tr>
+                            <#if !Request.tbProductCategories??>
+                                <tr><td>目前没有商品分类数据</td></tr>
                             </#if>
-                            <#if Request.tbProducts??>
+                            <#if Request.tbProductCategories??>
                                 <thead>
                                 <tr >
-                                    <th>商品编号</th>
-                                    <th>商品名称</th>
-                                    <th>商品库存</th>
-                                    <th>商品价格</th>
-                                    <th>商品卖家</th>
-                                    <th>商品状态</th>
-                                    <th>商品图标</th>
-                                    <th>商品详情</th>
+                                    <th>主键id</th>
+                                    <th>父id</th>
+                                    <th>分类名称</th>
+                                    <th>分类的图标</th>
+                                    <th>分类下的产品数量</th>
+                                    <th>查看下级</th>
                                     <th width="100">操作</th>
                                 </tr>
                                 </thead>
                                 <tbody>
-                                    <#list Request.tbProducts as tbProduct>
-                                        <tr>
-                                            <td>${tbProduct.productSn}</td>
-                                            <td>${tbProduct.productName}</td>
-                                            <td>${tbProduct.productStock}</td>
-                                            <td>${tbProduct.productPice}</td>
-                                            <td>${tbProduct.productSeller}</td>
-                                            <td>${tbProduct.productStatus}</td>
-                                            <td>${tbProduct.productIcon}</td>
-                                            <td><a href="#">查看详细信息</a></td>
-                                            <td>
-                                                <a href='/productController/getProductById?productId=${tbProduct.id}' class="btn btn-success btn-xs"><i class=" glyphicon glyphicon-check"></i></a>
-                                                <a href="/productController/removeProductById?productId=${tbProduct.id}" class="btn btn-danger btn-xs"><i class=" glyphicon glyphicon-remove"></i></a>
-                                            </td>
-                                        </tr>
-                                    </#list>
+                                <#list Request.tbProductCategories as tbProductCategory>
+                                    <tr>
+                                        <td>${tbProductCategory.id}</td>
+                                        <td>${tbProductCategory.parentId}</td>
+                                        <td>${tbProductCategory.categoryName}</td>
+                                        <td>${tbProductCategory.categoryIcon}</td>
+                                        <td>${tbProductCategory.categoryDownProductCount}</td>
+                                        <td><a href='/productController/getProductCategoryTwoById?productCategoryId=${tbProductCategory.id}'>查看下一级分类</a></td>
+                                        <td>
+                                            <a href='/productController/getProductCategoryById?productCategoryId=${tbProductCategory.id}' class="btn btn-success btn-xs"><i class=" glyphicon glyphicon-check"></i></a>
+                                            <a href="/productController/removeProductCategoryById?productCategoryId=${tbProductCategory.id}" class="btn btn-danger btn-xs"><i class=" glyphicon glyphicon-remove"></i></a>
+                                        </td>
+                                    </tr>
+                                </#list>
                                 </tbody>
                             </#if>
                         </table>
