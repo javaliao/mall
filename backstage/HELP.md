@@ -7,7 +7,7 @@
 ###使用tk.mybatis作为通用mapper
 
 ###使用druid数据库连接池，以及监控启动项目，访问http://localhost:8085/druid/login.html。
-登录后，必须先访问一个后台应用的URL，执行了后台程序后，才能看到监控数据。
+使用用户名：druid密码：druid登录后，必须先访问一个后台应用的URL，执行了后台程序后，才能看到监控数据。
 
 ###使用actuator用于在项目运行时，查看运行中的各种配置及参数等
 类似：Mapped "{[/jumpController/toProductCategoryModify],methods=[GET]}" 
