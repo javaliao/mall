@@ -9,14 +9,13 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 @Controller
 @RequestMapping("/productController")
 @Api(tags = "ProductController",description = "商品管理")
-public class ProductController extends BaseController{
+public class ProductController extends BaseController {
 
     @Autowired
     ProductService productService;
@@ -24,22 +23,22 @@ public class ProductController extends BaseController{
 
     @ApiOperation("获取商品列表")
     @GetMapping("/getProductList")
-    public String getProductList(ModelMap modelMap){
+    public String getProductList(ModelMap modelMap) {
         productService.getProductList(modelMap);
         return "product/list";
     }
 
     @ApiOperation("商品搜索")
     @PostMapping("/productSearch")
-    public String productSearch(TbProduct tbProduct,ModelMap modelMap){
-        productService.productSearch(tbProduct,modelMap);
+    public String productSearch(TbProduct tbProduct, ModelMap modelMap) {
+        productService.productSearch(tbProduct, modelMap);
         return "product/list";
     }
 
     @ApiOperation("根据商品ID获取商品信息")
     @GetMapping("/getProductById")
-    public String getProductById(String productId, ModelMap modelMap){
-        productService.getProductById(productId,modelMap);
+    public String getProductById(String productId, ModelMap modelMap) {
+        productService.getProductById(productId, modelMap);
         return "product/modify";
     }
 
@@ -66,15 +65,15 @@ public class ProductController extends BaseController{
 
     @ApiOperation("获取商品分类列表")
     @GetMapping("/getProductCategoryList")
-    public String getProductCategoryList(ModelMap modelMap){
+    public String getProductCategoryList(ModelMap modelMap) {
         productService.getProductCategoryList(modelMap);
         return "productCategory/list";
     }
 
     @ApiOperation("根据商品分类ID获取商品信息")
     @GetMapping("/getProductCategoryById")
-    public String getProductCategoryById(String productCategoryId, ModelMap modelMap){
-        productService.getProductCategoryById(productCategoryId,modelMap);
+    public String getProductCategoryById(String productCategoryId, ModelMap modelMap) {
+        productService.getProductCategoryById(productCategoryId, modelMap);
         return "productCategory/modify";
     }
 
@@ -101,8 +100,9 @@ public class ProductController extends BaseController{
 
     @ApiOperation("根据商品分类ID获取商品信息")
     @GetMapping("/getProductCategoryTwoById")
-    public String getProductCategoryTwoById(String productCategoryId, ModelMap modelMap){
-        productService.getProductCategoryTwoById(productCategoryId,modelMap);
+    public String getProductCategoryTwoById(String productCategoryId, ModelMap modelMap) {
+        productService.getProductCategoryTwoById(productCategoryId, modelMap);
         return "productCategory/listTwo";
     }
+
 }
