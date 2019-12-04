@@ -1,4 +1,4 @@
-trigger.txt是我自创的一个文件，没有内容
+trigger.txt是我自创的一个文件
 
 修改一处代码不会重启，等全部代码都修改完成后再修改trigger.txt文件，
 
