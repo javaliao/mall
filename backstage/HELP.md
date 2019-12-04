@@ -1,6 +1,6 @@
 #分布式电商总后台
 
-###使用freemark作为模板引擎
+###使用freemark作为模板引擎,后台首页：http://localhost:8085/jumpController/
 
 ###使用springBoot+mybatis作为主体框架
 

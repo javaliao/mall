@@ -40,7 +40,8 @@ public class TbProduct implements Serializable {
   private String productIcon;
   private java.sql.Timestamp createTime;
   private java.sql.Timestamp updateTime;
-  private long isDelete;
+  @Column
+  private Long isDelete;
 
 
   public String getId() {
@@ -277,11 +278,11 @@ public class TbProduct implements Serializable {
   }
 
 
-  public long getIsDelete() {
+  public Long getIsDelete() {
     return isDelete;
   }
 
-  public void setIsDelete(long isDelete) {
+  public void setIsDelete(Long isDelete) {
     this.isDelete = isDelete;
   }
 

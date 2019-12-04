@@ -29,16 +29,19 @@
                     <h3 class="panel-title"><i class="glyphicon glyphicon-th"></i> 数据列表</h3>
                 </div>
                 <div class="panel-body">
-                    <form class="form-inline" role="form" style="float:left;">
+                    <form action="/productController/productSearch"  enctype="application/x-www-form-urlencoded" method="POST"
+                          class="form-inline" role="form" style="float:left;">
                         <div class="form-group has-feedback">
                             <div class="input-group">
                                 <div class="input-group-addon">查询条件</div>
-                                <input class="form-control has-success" type="text" placeholder="请输入查询条件">
+                                <input class="form-control has-success" type="text" placeholder="请输入商品名称" name="productName">
+                                <input class="form-control has-success" type="text" placeholder="请输入商品编号" name="productSn">
+                                <input class="form-control has-success" type="text" placeholder="请输入商品卖家" name="productSeller">
                             </div>
                         </div>
-                        <button type="button" class="btn btn-warning"><i class="glyphicon glyphicon-search"></i> 查询</button>
-                        <button type="button" class="btn btn-warning"><a href="/jumpController/toProductModify"> <i class="glyphicon glyphicon-search"></i> 添加</a></button>
-                    </form><br>
+                        <button type="submit" class="btn btn-warning"><i class="glyphicon glyphicon-search"></i>查询</button>
+                        <button type="button" class="btn btn-warning"><i class="glyphicon glyphicon-plus"></i><a href="/jumpController/toProductModify">添加</a></button>
+                    </form>
                     <hr style="clear:both;">
                     <div class="table-responsive">
                         <table class="table  table-bordered">

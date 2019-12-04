@@ -12,11 +12,6 @@ import org.springframework.web.bind.annotation.RequestMapping;
 @Api(tags = "JumpController",description = "跳转管理")
 public class JumpController {
 
-    @ApiOperation("去首页")
-    @GetMapping("/")
-    public String Jump(){
-        return "main";
-    }
 
     @ApiOperation("异常页")
     @GetMapping("/toError")
