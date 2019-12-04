@@ -28,7 +28,8 @@ public class JumpController {
 
     @ApiOperation("去商品分类修改页")
     @GetMapping("/toProductCategoryModify")
-    public String toProductCategoryModify(){
+    public String toProductCategoryModify(String id, ModelMap modelMap){
+        modelMap.addAttribute("id",id);
         return "productCategory/modify";
     }
 

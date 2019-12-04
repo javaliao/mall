@@ -79,6 +79,7 @@ public class ProductServiceImpl implements ProductService {
     public void getProductCategoryList(ModelMap modelMap) {
         TbProductCategory tbProductCategory = new TbProductCategory();
         tbProductCategory.setIsDelete(0L);
+        tbProductCategory.setParentId("0");
         List<TbProductCategory> tbProductCategories = productCategoryMapper.select(tbProductCategory);
         modelMap.addAttribute("tbProductCategories",tbProductCategories);
     }
@@ -111,6 +112,9 @@ public class ProductServiceImpl implements ProductService {
 
     @Override
     public void insertProductCategory(TbProductCategory tbProductCategory) throws Exception {
+        if(StringTool.isEmpty(tbProductCategory.getId())){
+            tbProductCategory.setId(null);
+        }
         tbProductCategory.setIsDelete(0L);
         int insert = productCategoryMapper.insert(tbProductCategory);
         if(insert <= 0){
@@ -125,5 +129,6 @@ public class ProductServiceImpl implements ProductService {
         tbProductCategory.setIsDelete(0L);
         List<TbProductCategory> tbProductCategorysData = productCategoryMapper.select(tbProductCategory);
         modelMap.addAttribute("tbProductCategories",tbProductCategorysData);
+        modelMap.addAttribute("parentId",productCategoryId);
     }
 }

@@ -33,11 +33,11 @@
                         <div class="form-group has-feedback">
                             <div class="input-group">
                                 <div class="input-group-addon">查询条件</div>
-                                <input class="form-control has-success" type="text" placeholder="请输入查询条件">
+                                <input class="form-control has-success" type="text" placeholder="请输入分类名称">
                             </div>
                         </div>
                         <button type="button" class="btn btn-warning"><i class="glyphicon glyphicon-search"></i> 查询</button>
-                        <button type="button" class="btn btn-warning"><a href="/jumpController/toProductCategoryModify"> <i class="glyphicon glyphicon-search"></i> 添加</a></button>
+                        <button type="button" class="btn btn-warning"><a href="/jumpController/toProductCategoryModify?id=0"><i class="glyphicon glyphicon-search"></i>添加</a></button>
                     </form><br>
                     <hr style="clear:both;">
                     <div class="table-responsive">

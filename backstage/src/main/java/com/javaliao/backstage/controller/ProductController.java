@@ -9,6 +9,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
@@ -91,17 +92,17 @@ public class ProductController extends BaseController{
         return "redirect:getProductCategoryList";
     }
 
-    @ApiOperation("添加商品")
+    @ApiOperation("添加商品分类")
     @PostMapping("/insertProductCategory")
     public String insertProductCategory(TbProductCategory tbProductCategory) throws Exception {
         productService.insertProductCategory(tbProductCategory);
-        return "redirect:getProductCategoryList";
+        return "redirect:getProductCategoryTwoById?productCategoryId=" + tbProductCategory.getParentId();
     }
 
     @ApiOperation("根据商品分类ID获取商品信息")
     @GetMapping("/getProductCategoryTwoById")
     public String getProductCategoryTwoById(String productCategoryId, ModelMap modelMap){
         productService.getProductCategoryTwoById(productCategoryId,modelMap);
-        return "productCategory/list";
+        return "productCategory/listTwo";
     }
 }

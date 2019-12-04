@@ -38,7 +38,7 @@
                                 </tr>
                                 <tr>
                                     <td>父id</td>
-                                    <td><input type="text" name="parentId"></td>
+                                    <td><input type="text" name="parentId" value="${id}"></td>
                                 </tr>
                                 <tr>
                                     <td>分类名称</td>

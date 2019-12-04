@@ -37,7 +37,7 @@
                             </div>
                         </div>
                         <button type="button" class="btn btn-warning"><i class="glyphicon glyphicon-search"></i> 查询</button>
-                        <button type="button" class="btn btn-warning"><a href="/jumpController/toProductCategoryModify"> <i class="glyphicon"></i> 添加</a></button>
+                        <button type="button" class="btn btn-warning"><a href="/jumpController/toProductCategoryModify?id=${parentId}"> <i class="glyphicon"></i> 添加</a></button>
                     </form><br>
                     <hr style="clear:both;">
                     <div class="table-responsive">
