@@ -45,7 +45,7 @@
                         <a href="/sellerController/getSellerList"><i class="glyphicon glyphicon-random"></i>卖家管理</a>
                     </li>
                     <li style="height:30px;">
-                        <a href="advertisement.html"><i class="glyphicon glyphicon-hdd"></i> 广告管理</a>
+                        <a href="/userController/getUserList"><i class="glyphicon glyphicon-hdd"></i>用户管理</a>
                     </li>
                     <li style="height:30px;">
                         <a href="message.html"><i class="glyphicon glyphicon-comment"></i> 消息模板</a>

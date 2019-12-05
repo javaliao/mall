@@ -84,7 +84,7 @@
                         <form action="/sellerController/updateSeller" enctype="application/x-www-form-urlencoded" method="POST">
                             <table>
                                 <input type="hidden" name="id" value="${TbSeller.id}">
-                                <input type="hidden" name="id" value="${TbSeller.isDelete}">
+                                <input type="hidden" name="isDelete" value="${TbSeller.isDelete}">
                                 <tr>
                                     <td width="500">卖家名称</td>
                                     <td><input type="text" name="sellerName" value="${TbSeller.sellerName}"></td>

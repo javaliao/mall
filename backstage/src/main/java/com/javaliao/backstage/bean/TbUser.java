@@ -1,9 +1,17 @@
 package com.javaliao.backstage.bean;
 
 
-public class TbUser {
+import javax.persistence.Column;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
 
-  private long id;
+public class TbUser {
+  //表单类型都为String，所以这里将类型转换成String
+  @Id
+  @Column
+  @GeneratedValue(strategy = GenerationType.IDENTITY)
+  private Long id;
   private String userName;
   private String userPassword;
   private String userNickName;
@@ -34,14 +42,14 @@ public class TbUser {
   private java.sql.Timestamp accountCreateTime;
   private java.sql.Timestamp createTime;
   private java.sql.Timestamp updateTime;
-  private long isDelete;
+  private Long isDelete;
 
 
-  public long getId() {
+  public Long getId() {
     return id;
   }
 
-  public void setId(long id) {
+  public void setId(Long id) {
     this.id = id;
   }
 
@@ -316,11 +324,11 @@ public class TbUser {
   }
 
 
-  public long getIsDelete() {
+  public Long getIsDelete() {
     return isDelete;
   }
 
-  public void setIsDelete(long isDelete) {
+  public void setIsDelete(Long isDelete) {
     this.isDelete = isDelete;
   }
 

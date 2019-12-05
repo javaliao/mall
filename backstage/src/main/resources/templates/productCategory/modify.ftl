@@ -58,6 +58,8 @@
                     </#if>
                     <#if Request.tbProductCategory??>
                         <form action="/productController/updateProductCategory" enctype="application/x-www-form-urlencoded" method="POST">
+                            <input type="hidden" name="id" value="${tbProductCategory.id}">
+                            <input type="hidden" name="isDelete" value="${tbProductCategory.isDelete}">
                             <table>
                                 <tr>
                                     <td width="500">主键id</td>

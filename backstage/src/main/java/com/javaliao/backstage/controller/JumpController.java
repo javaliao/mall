@@ -39,4 +39,11 @@ public class JumpController {
         return "seller/modify";
     }
 
+
+    @ApiOperation("去用户修改页")
+    @GetMapping("/toUserModify")
+    public String toUserModify(){
+        return "user/modify";
+    }
+
 }

@@ -1,6 +1,5 @@
 package com.javaliao.backstage.controller;
 
-import com.javaliao.backstage.bean.TbProduct;
 import com.javaliao.backstage.bean.TbSeller;
 import com.javaliao.backstage.service.SellerService;
 import io.swagger.annotations.Api;

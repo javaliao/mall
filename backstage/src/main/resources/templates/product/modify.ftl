@@ -68,6 +68,7 @@
                         <form action="/productController/updateProduct" enctype="application/x-www-form-urlencoded" method="POST">
                             <table>
                                 <input type="hidden" name="id" value="${tbProduct.id}">
+                                <input type="hidden" name="isDelete" value="${tbProduct.isDelete}">
                                 <tr>
                                     <td width="500">商品编号</td>
                                     <td><input type="text" name="productSn" value="${tbProduct.productSn}"></td>
