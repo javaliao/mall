@@ -1,9 +1,18 @@
 package com.javaliao.backstage.bean;
 
 
-public class TbSeller {
+import javax.persistence.Column;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import java.io.Serializable;
 
-  private long id;
+public class TbSeller implements Serializable {
+  //表单类型都为String，所以这里将类型转换成String
+  @Id
+  @Column
+  @GeneratedValue(strategy = GenerationType.IDENTITY)
+  private Long id;
   private String sellerName;
   private String sellerCreditLevel;
   private String liaisonName;
@@ -17,20 +26,20 @@ public class TbSeller {
   private String bankAccount;
   private String legalPerson;
   private String legalPersonCardId;
-  private long provinceId;
-  private long citiesId;
-  private long areaId;
+  private Long provinceId;
+  private Long citiesId;
+  private Long areaId;
   private String sellerDetailAddress;
   private java.sql.Timestamp createTime;
   private java.sql.Timestamp updateTime;
-  private long isDelete;
+  private Long isDelete;
 
 
-  public long getId() {
+  public Long getId() {
     return id;
   }
 
-  public void setId(long id) {
+  public void setId(Long id) {
     this.id = id;
   }
 
@@ -152,29 +161,29 @@ public class TbSeller {
   }
 
 
-  public long getProvinceId() {
+  public Long getProvinceId() {
     return provinceId;
   }
 
-  public void setProvinceId(long provinceId) {
+  public void setProvinceId(Long provinceId) {
     this.provinceId = provinceId;
   }
 
 
-  public long getCitiesId() {
+  public Long getCitiesId() {
     return citiesId;
   }
 
-  public void setCitiesId(long citiesId) {
+  public void setCitiesId(Long citiesId) {
     this.citiesId = citiesId;
   }
 
 
-  public long getAreaId() {
+  public Long getAreaId() {
     return areaId;
   }
 
-  public void setAreaId(long areaId) {
+  public void setAreaId(Long areaId) {
     this.areaId = areaId;
   }
 
@@ -206,11 +215,11 @@ public class TbSeller {
   }
 
 
-  public long getIsDelete() {
+  public Long getIsDelete() {
     return isDelete;
   }
 
-  public void setIsDelete(long isDelete) {
+  public void setIsDelete(Long isDelete) {
     this.isDelete = isDelete;
   }
 

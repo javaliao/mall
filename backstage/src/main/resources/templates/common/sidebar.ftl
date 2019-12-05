@@ -42,7 +42,7 @@
                         <a href="/productController/getProductCategoryList"><i class="glyphicon glyphicon-equalizer"></i> 商品分类管理</a>
                     </li>
                     <li style="height:30px;">
-                        <a href="/manager/consumer/process/definition/list"><i class="glyphicon glyphicon-random"></i> 流程管理</a>
+                        <a href="/sellerController/getSellerList"><i class="glyphicon glyphicon-random"></i>卖家管理</a>
                     </li>
                     <li style="height:30px;">
                         <a href="advertisement.html"><i class="glyphicon glyphicon-hdd"></i> 广告管理</a>
