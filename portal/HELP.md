@@ -4,7 +4,7 @@
 
 ##使用springCould全家桶+mybatis作为主体框架
 
-####使用ZooKeeper作为大型分布式的可靠性协调系统。Hadoop的分布式同步等靠Zookeeper实现
+####使用consul作为服务注册中心
 
 ####使用Zipkin作为分布式的跟踪系统
 
