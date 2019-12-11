@@ -16,6 +16,8 @@
 
 ####使用ribbon作为负载均衡客户端
 
+##使用mybatis generator作为mybatis代码生成器
+
 ##使用Swagger-UI作为API文档生产工具，实现在线调试，接口文档查看
 
 ##使用Redis作为缓存，实现数据存储，快速读取

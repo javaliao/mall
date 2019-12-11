@@ -7,6 +7,8 @@
 
 ###使用springBoot+mybatis作为主体框架
 
+###使用IntelliJ IDEA的Database生成实体类
+
 ###使用tk.mybatis作为通用mapper
 
 ###使用druid数据库连接池，以及监控启动项目
@@ -21,6 +23,8 @@ druid监控地址：http://localhost:8085/druid/login.html。
 ###使用Swagger-UI作为API文档生产工具
 访问文档地址：http://localhost:8085/swagger-ui.html
 
-###使用fastdfs作为分布式文件系统
+###使用Hadoop的HDFS作为分布式文件系统，实现图片存储
 
 ###使用log4j作为日志文件,我配置的日志文件路径是E:\Project\PersonalProject\DistributedProject\Log\spring.log
+
+
