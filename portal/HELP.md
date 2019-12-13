@@ -1,4 +1,4 @@
-#分布式电商网站前台
+#分布式电商网站前台技术选型
 
 ##使用freemark作为模板引擎,后期SEO推广
 
@@ -16,7 +16,7 @@
 
 ####使用ribbon作为负载均衡客户端
 
-##使用mybatis generator作为mybatis代码生成器
+##使用mybatisGenerator作为mybatis代码生成器
 
 ##使用Swagger-UI作为API文档生产工具，实现在线调试，接口文档查看
 
@@ -36,5 +36,16 @@
 
 ##使用Hadoop的common一些工具
 
-#个人建议电脑配置在内存16G，本项目含大数据内容，技术选型还未完全确定
+#项目架构
 
+basic作为基础库，用于存放公共方法，或者工具类
+
+bean作为实体库，用于存放实体类
+
+http://localhost:5000服务链路追踪
+
+http://localhost:8761注册中心
+
+http://localhost:5000/api-a/hi?name=aa从zuul到ribbon到service-hi
+
+http://localhost:5000/api-b/hi?name=aa从zuul到feign到service-hi
