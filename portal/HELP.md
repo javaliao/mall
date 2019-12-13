@@ -4,7 +4,7 @@
 
 ##使用springCould全家桶+mybatis作为主体框架
 
-####使用consul作为服务注册中心
+####使用eureka作为服务注册中心,这里并没有做高可用的注册中心，仅为单一注册中心，便于后期更换注册中心consul或者zookeeper
 
 ####使用Zipkin作为分布式的跟踪系统
 
@@ -15,6 +15,8 @@
 ####使用Feign作为服务消费者，对外暴露接口
 
 ####使用ribbon作为负载均衡客户端
+
+####使用config作为统一的配置中心
 
 ##使用mybatisGenerator作为mybatis代码生成器
 
