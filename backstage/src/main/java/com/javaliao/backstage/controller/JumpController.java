@@ -33,4 +33,17 @@ public class JumpController {
         return "productCategory/modify";
     }
 
+    @ApiOperation("去卖家修改页")
+    @GetMapping("/toSellerModify")
+    public String toSellerModify(){
+        return "seller/modify";
+    }
+
+
+    @ApiOperation("去用户修改页")
+    @GetMapping("/toUserModify")
+    public String toUserModify(){
+        return "user/modify";
+    }
+
 }

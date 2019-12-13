@@ -1,0 +1,404 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="mapper.TbSellerStoreMapper">
+  <resultMap id="BaseResultMap" type="model.TbSellerStore">
+    <id column="Id" jdbcType="BIGINT" property="id" />
+    <result column="seller_id" jdbcType="BIGINT" property="sellerId" />
+    <result column="seller_store_name" jdbcType="VARCHAR" property="sellerStoreName" />
+    <result column="seller_store_synopsis" jdbcType="VARCHAR" property="sellerStoreSynopsis" />
+    <result column="seller_store_icon" jdbcType="VARCHAR" property="sellerStoreIcon" />
+    <result column="seller_store_create_time" jdbcType="TIMESTAMP" property="sellerStoreCreateTime" />
+    <result column="seller_store_category_attribute_name" jdbcType="VARCHAR" property="sellerStoreCategoryAttributeName" />
+    <result column="seller_store_category_attribute_values" jdbcType="VARCHAR" property="sellerStoreCategoryAttributeValues" />
+    <result column="seller_store_sell_well_products" jdbcType="VARCHAR" property="sellerStoreSellWellProducts" />
+    <result column="seller_store_hot_attention_products" jdbcType="VARCHAR" property="sellerStoreHotAttentionProducts" />
+    <result column="seller_store_new_products" jdbcType="VARCHAR" property="sellerStoreNewProducts" />
+    <result column="seller_store_home_page_carousel_pic" jdbcType="VARCHAR" property="sellerStoreHomePageCarouselPic" />
+    <result column="seller_store_pics" jdbcType="VARCHAR" property="sellerStorePics" />
+    <result column="seller_store_products" jdbcType="VARCHAR" property="sellerStoreProducts" />
+    <result column="create_time" jdbcType="TIMESTAMP" property="createTime" />
+    <result column="update_time" jdbcType="TIMESTAMP" property="updateTime" />
+    <result column="is_delete" jdbcType="BIGINT" property="isDelete" />
+  </resultMap>
+  <sql id="Example_Where_Clause">
+    <where>
+      <foreach collection="oredCriteria" item="criteria" separator="or">
+        <if test="criteria.valid">
+          <trim prefix="(" prefixOverrides="and" suffix=")">
+            <foreach collection="criteria.criteria" item="criterion">
+              <choose>
+                <when test="criterion.noValue">
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue">
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue">
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue">
+                  and ${criterion.condition}
+                  <foreach close=")" collection="criterion.value" item="listItem" open="(" separator=",">
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Update_By_Example_Where_Clause">
+    <where>
+      <foreach collection="example.oredCriteria" item="criteria" separator="or">
+        <if test="criteria.valid">
+          <trim prefix="(" prefixOverrides="and" suffix=")">
+            <foreach collection="criteria.criteria" item="criterion">
+              <choose>
+                <when test="criterion.noValue">
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue">
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue">
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue">
+                  and ${criterion.condition}
+                  <foreach close=")" collection="criterion.value" item="listItem" open="(" separator=",">
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Base_Column_List">
+    Id, seller_id, seller_store_name, seller_store_synopsis, seller_store_icon, seller_store_create_time, 
+    seller_store_category_attribute_name, seller_store_category_attribute_values, seller_store_sell_well_products, 
+    seller_store_hot_attention_products, seller_store_new_products, seller_store_home_page_carousel_pic, 
+    seller_store_pics, seller_store_products, create_time, update_time, is_delete
+  </sql>
+  <select id="selectByExample" parameterType="model.TbSellerStoreExample" resultMap="BaseResultMap">
+    select
+    <if test="distinct">
+      distinct
+    </if>
+    <include refid="Base_Column_List" />
+    from tb_seller_store
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null">
+      order by ${orderByClause}
+    </if>
+  </select>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Long" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from tb_seller_store
+    where Id = #{id,jdbcType=BIGINT}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Long">
+    delete from tb_seller_store
+    where Id = #{id,jdbcType=BIGINT}
+  </delete>
+  <delete id="deleteByExample" parameterType="model.TbSellerStoreExample">
+    delete from tb_seller_store
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+  </delete>
+  <insert id="insert" parameterType="model.TbSellerStore">
+    <selectKey keyProperty="id" order="AFTER" resultType="java.lang.Long">
+      SELECT LAST_INSERT_ID()
+    </selectKey>
+    insert into tb_seller_store (seller_id, seller_store_name, seller_store_synopsis, 
+      seller_store_icon, seller_store_create_time, 
+      seller_store_category_attribute_name, seller_store_category_attribute_values, 
+      seller_store_sell_well_products, seller_store_hot_attention_products, 
+      seller_store_new_products, seller_store_home_page_carousel_pic, 
+      seller_store_pics, seller_store_products, create_time, 
+      update_time, is_delete)
+    values (#{sellerId,jdbcType=BIGINT}, #{sellerStoreName,jdbcType=VARCHAR}, #{sellerStoreSynopsis,jdbcType=VARCHAR}, 
+      #{sellerStoreIcon,jdbcType=VARCHAR}, #{sellerStoreCreateTime,jdbcType=TIMESTAMP}, 
+      #{sellerStoreCategoryAttributeName,jdbcType=VARCHAR}, #{sellerStoreCategoryAttributeValues,jdbcType=VARCHAR}, 
+      #{sellerStoreSellWellProducts,jdbcType=VARCHAR}, #{sellerStoreHotAttentionProducts,jdbcType=VARCHAR}, 
+      #{sellerStoreNewProducts,jdbcType=VARCHAR}, #{sellerStoreHomePageCarouselPic,jdbcType=VARCHAR}, 
+      #{sellerStorePics,jdbcType=VARCHAR}, #{sellerStoreProducts,jdbcType=VARCHAR}, #{createTime,jdbcType=TIMESTAMP}, 
+      #{updateTime,jdbcType=TIMESTAMP}, #{isDelete,jdbcType=BIGINT})
+  </insert>
+  <insert id="insertSelective" parameterType="model.TbSellerStore">
+    <selectKey keyProperty="id" order="AFTER" resultType="java.lang.Long">
+      SELECT LAST_INSERT_ID()
+    </selectKey>
+    insert into tb_seller_store
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="sellerId != null">
+        seller_id,
+      </if>
+      <if test="sellerStoreName != null">
+        seller_store_name,
+      </if>
+      <if test="sellerStoreSynopsis != null">
+        seller_store_synopsis,
+      </if>
+      <if test="sellerStoreIcon != null">
+        seller_store_icon,
+      </if>
+      <if test="sellerStoreCreateTime != null">
+        seller_store_create_time,
+      </if>
+      <if test="sellerStoreCategoryAttributeName != null">
+        seller_store_category_attribute_name,
+      </if>
+      <if test="sellerStoreCategoryAttributeValues != null">
+        seller_store_category_attribute_values,
+      </if>
+      <if test="sellerStoreSellWellProducts != null">
+        seller_store_sell_well_products,
+      </if>
+      <if test="sellerStoreHotAttentionProducts != null">
+        seller_store_hot_attention_products,
+      </if>
+      <if test="sellerStoreNewProducts != null">
+        seller_store_new_products,
+      </if>
+      <if test="sellerStoreHomePageCarouselPic != null">
+        seller_store_home_page_carousel_pic,
+      </if>
+      <if test="sellerStorePics != null">
+        seller_store_pics,
+      </if>
+      <if test="sellerStoreProducts != null">
+        seller_store_products,
+      </if>
+      <if test="createTime != null">
+        create_time,
+      </if>
+      <if test="updateTime != null">
+        update_time,
+      </if>
+      <if test="isDelete != null">
+        is_delete,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="sellerId != null">
+        #{sellerId,jdbcType=BIGINT},
+      </if>
+      <if test="sellerStoreName != null">
+        #{sellerStoreName,jdbcType=VARCHAR},
+      </if>
+      <if test="sellerStoreSynopsis != null">
+        #{sellerStoreSynopsis,jdbcType=VARCHAR},
+      </if>
+      <if test="sellerStoreIcon != null">
+        #{sellerStoreIcon,jdbcType=VARCHAR},
+      </if>
+      <if test="sellerStoreCreateTime != null">
+        #{sellerStoreCreateTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="sellerStoreCategoryAttributeName != null">
+        #{sellerStoreCategoryAttributeName,jdbcType=VARCHAR},
+      </if>
+      <if test="sellerStoreCategoryAttributeValues != null">
+        #{sellerStoreCategoryAttributeValues,jdbcType=VARCHAR},
+      </if>
+      <if test="sellerStoreSellWellProducts != null">
+        #{sellerStoreSellWellProducts,jdbcType=VARCHAR},
+      </if>
+      <if test="sellerStoreHotAttentionProducts != null">
+        #{sellerStoreHotAttentionProducts,jdbcType=VARCHAR},
+      </if>
+      <if test="sellerStoreNewProducts != null">
+        #{sellerStoreNewProducts,jdbcType=VARCHAR},
+      </if>
+      <if test="sellerStoreHomePageCarouselPic != null">
+        #{sellerStoreHomePageCarouselPic,jdbcType=VARCHAR},
+      </if>
+      <if test="sellerStorePics != null">
+        #{sellerStorePics,jdbcType=VARCHAR},
+      </if>
+      <if test="sellerStoreProducts != null">
+        #{sellerStoreProducts,jdbcType=VARCHAR},
+      </if>
+      <if test="createTime != null">
+        #{createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updateTime != null">
+        #{updateTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="isDelete != null">
+        #{isDelete,jdbcType=BIGINT},
+      </if>
+    </trim>
+  </insert>
+  <select id="countByExample" parameterType="model.TbSellerStoreExample" resultType="java.lang.Integer">
+    select count(*) from tb_seller_store
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+  </select>
+  <update id="updateByExampleSelective" parameterType="map">
+    update tb_seller_store
+    <set>
+      <if test="record.id != null">
+        Id = #{record.id,jdbcType=BIGINT},
+      </if>
+      <if test="record.sellerId != null">
+        seller_id = #{record.sellerId,jdbcType=BIGINT},
+      </if>
+      <if test="record.sellerStoreName != null">
+        seller_store_name = #{record.sellerStoreName,jdbcType=VARCHAR},
+      </if>
+      <if test="record.sellerStoreSynopsis != null">
+        seller_store_synopsis = #{record.sellerStoreSynopsis,jdbcType=VARCHAR},
+      </if>
+      <if test="record.sellerStoreIcon != null">
+        seller_store_icon = #{record.sellerStoreIcon,jdbcType=VARCHAR},
+      </if>
+      <if test="record.sellerStoreCreateTime != null">
+        seller_store_create_time = #{record.sellerStoreCreateTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="record.sellerStoreCategoryAttributeName != null">
+        seller_store_category_attribute_name = #{record.sellerStoreCategoryAttributeName,jdbcType=VARCHAR},
+      </if>
+      <if test="record.sellerStoreCategoryAttributeValues != null">
+        seller_store_category_attribute_values = #{record.sellerStoreCategoryAttributeValues,jdbcType=VARCHAR},
+      </if>
+      <if test="record.sellerStoreSellWellProducts != null">
+        seller_store_sell_well_products = #{record.sellerStoreSellWellProducts,jdbcType=VARCHAR},
+      </if>
+      <if test="record.sellerStoreHotAttentionProducts != null">
+        seller_store_hot_attention_products = #{record.sellerStoreHotAttentionProducts,jdbcType=VARCHAR},
+      </if>
+      <if test="record.sellerStoreNewProducts != null">
+        seller_store_new_products = #{record.sellerStoreNewProducts,jdbcType=VARCHAR},
+      </if>
+      <if test="record.sellerStoreHomePageCarouselPic != null">
+        seller_store_home_page_carousel_pic = #{record.sellerStoreHomePageCarouselPic,jdbcType=VARCHAR},
+      </if>
+      <if test="record.sellerStorePics != null">
+        seller_store_pics = #{record.sellerStorePics,jdbcType=VARCHAR},
+      </if>
+      <if test="record.sellerStoreProducts != null">
+        seller_store_products = #{record.sellerStoreProducts,jdbcType=VARCHAR},
+      </if>
+      <if test="record.createTime != null">
+        create_time = #{record.createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="record.updateTime != null">
+        update_time = #{record.updateTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="record.isDelete != null">
+        is_delete = #{record.isDelete,jdbcType=BIGINT},
+      </if>
+    </set>
+    <if test="_parameter != null">
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByExample" parameterType="map">
+    update tb_seller_store
+    set Id = #{record.id,jdbcType=BIGINT},
+      seller_id = #{record.sellerId,jdbcType=BIGINT},
+      seller_store_name = #{record.sellerStoreName,jdbcType=VARCHAR},
+      seller_store_synopsis = #{record.sellerStoreSynopsis,jdbcType=VARCHAR},
+      seller_store_icon = #{record.sellerStoreIcon,jdbcType=VARCHAR},
+      seller_store_create_time = #{record.sellerStoreCreateTime,jdbcType=TIMESTAMP},
+      seller_store_category_attribute_name = #{record.sellerStoreCategoryAttributeName,jdbcType=VARCHAR},
+      seller_store_category_attribute_values = #{record.sellerStoreCategoryAttributeValues,jdbcType=VARCHAR},
+      seller_store_sell_well_products = #{record.sellerStoreSellWellProducts,jdbcType=VARCHAR},
+      seller_store_hot_attention_products = #{record.sellerStoreHotAttentionProducts,jdbcType=VARCHAR},
+      seller_store_new_products = #{record.sellerStoreNewProducts,jdbcType=VARCHAR},
+      seller_store_home_page_carousel_pic = #{record.sellerStoreHomePageCarouselPic,jdbcType=VARCHAR},
+      seller_store_pics = #{record.sellerStorePics,jdbcType=VARCHAR},
+      seller_store_products = #{record.sellerStoreProducts,jdbcType=VARCHAR},
+      create_time = #{record.createTime,jdbcType=TIMESTAMP},
+      update_time = #{record.updateTime,jdbcType=TIMESTAMP},
+      is_delete = #{record.isDelete,jdbcType=BIGINT}
+    <if test="_parameter != null">
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByPrimaryKeySelective" parameterType="model.TbSellerStore">
+    update tb_seller_store
+    <set>
+      <if test="sellerId != null">
+        seller_id = #{sellerId,jdbcType=BIGINT},
+      </if>
+      <if test="sellerStoreName != null">
+        seller_store_name = #{sellerStoreName,jdbcType=VARCHAR},
+      </if>
+      <if test="sellerStoreSynopsis != null">
+        seller_store_synopsis = #{sellerStoreSynopsis,jdbcType=VARCHAR},
+      </if>
+      <if test="sellerStoreIcon != null">
+        seller_store_icon = #{sellerStoreIcon,jdbcType=VARCHAR},
+      </if>
+      <if test="sellerStoreCreateTime != null">
+        seller_store_create_time = #{sellerStoreCreateTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="sellerStoreCategoryAttributeName != null">
+        seller_store_category_attribute_name = #{sellerStoreCategoryAttributeName,jdbcType=VARCHAR},
+      </if>
+      <if test="sellerStoreCategoryAttributeValues != null">
+        seller_store_category_attribute_values = #{sellerStoreCategoryAttributeValues,jdbcType=VARCHAR},
+      </if>
+      <if test="sellerStoreSellWellProducts != null">
+        seller_store_sell_well_products = #{sellerStoreSellWellProducts,jdbcType=VARCHAR},
+      </if>
+      <if test="sellerStoreHotAttentionProducts != null">
+        seller_store_hot_attention_products = #{sellerStoreHotAttentionProducts,jdbcType=VARCHAR},
+      </if>
+      <if test="sellerStoreNewProducts != null">
+        seller_store_new_products = #{sellerStoreNewProducts,jdbcType=VARCHAR},
+      </if>
+      <if test="sellerStoreHomePageCarouselPic != null">
+        seller_store_home_page_carousel_pic = #{sellerStoreHomePageCarouselPic,jdbcType=VARCHAR},
+      </if>
+      <if test="sellerStorePics != null">
+        seller_store_pics = #{sellerStorePics,jdbcType=VARCHAR},
+      </if>
+      <if test="sellerStoreProducts != null">
+        seller_store_products = #{sellerStoreProducts,jdbcType=VARCHAR},
+      </if>
+      <if test="createTime != null">
+        create_time = #{createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updateTime != null">
+        update_time = #{updateTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="isDelete != null">
+        is_delete = #{isDelete,jdbcType=BIGINT},
+      </if>
+    </set>
+    where Id = #{id,jdbcType=BIGINT}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="model.TbSellerStore">
+    update tb_seller_store
+    set seller_id = #{sellerId,jdbcType=BIGINT},
+      seller_store_name = #{sellerStoreName,jdbcType=VARCHAR},
+      seller_store_synopsis = #{sellerStoreSynopsis,jdbcType=VARCHAR},
+      seller_store_icon = #{sellerStoreIcon,jdbcType=VARCHAR},
+      seller_store_create_time = #{sellerStoreCreateTime,jdbcType=TIMESTAMP},
+      seller_store_category_attribute_name = #{sellerStoreCategoryAttributeName,jdbcType=VARCHAR},
+      seller_store_category_attribute_values = #{sellerStoreCategoryAttributeValues,jdbcType=VARCHAR},
+      seller_store_sell_well_products = #{sellerStoreSellWellProducts,jdbcType=VARCHAR},
+      seller_store_hot_attention_products = #{sellerStoreHotAttentionProducts,jdbcType=VARCHAR},
+      seller_store_new_products = #{sellerStoreNewProducts,jdbcType=VARCHAR},
+      seller_store_home_page_carousel_pic = #{sellerStoreHomePageCarouselPic,jdbcType=VARCHAR},
+      seller_store_pics = #{sellerStorePics,jdbcType=VARCHAR},
+      seller_store_products = #{sellerStoreProducts,jdbcType=VARCHAR},
+      create_time = #{createTime,jdbcType=TIMESTAMP},
+      update_time = #{updateTime,jdbcType=TIMESTAMP},
+      is_delete = #{isDelete,jdbcType=BIGINT}
+    where Id = #{id,jdbcType=BIGINT}
+  </update>
+</mapper>

@@ -1,0 +1,339 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="mapper.TbLogVisitStatisticsMapper">
+  <resultMap id="BaseResultMap" type="model.TbLogVisitStatistics">
+    <id column="Id" jdbcType="BIGINT" property="id" />
+    <result column="log_visit_id" jdbcType="BIGINT" property="logVisitId" />
+    <result column="visit_method" jdbcType="VARCHAR" property="visitMethod" />
+    <result column="visit_params" jdbcType="VARCHAR" property="visitParams" />
+    <result column="visit_throwing_erro" jdbcType="VARCHAR" property="visitThrowingErro" />
+    <result column="visit_result" jdbcType="VARCHAR" property="visitResult" />
+    <result column="visit_num" jdbcType="BIGINT" property="visitNum" />
+    <result column="visit_start_time" jdbcType="TIMESTAMP" property="visitStartTime" />
+    <result column="visit_end_time" jdbcType="TIMESTAMP" property="visitEndTime" />
+    <result column="visit_time_consuming" jdbcType="BIGINT" property="visitTimeConsuming" />
+    <result column="create_time" jdbcType="TIMESTAMP" property="createTime" />
+    <result column="update_time" jdbcType="TIMESTAMP" property="updateTime" />
+    <result column="is_delete" jdbcType="BIGINT" property="isDelete" />
+  </resultMap>
+  <sql id="Example_Where_Clause">
+    <where>
+      <foreach collection="oredCriteria" item="criteria" separator="or">
+        <if test="criteria.valid">
+          <trim prefix="(" prefixOverrides="and" suffix=")">
+            <foreach collection="criteria.criteria" item="criterion">
+              <choose>
+                <when test="criterion.noValue">
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue">
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue">
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue">
+                  and ${criterion.condition}
+                  <foreach close=")" collection="criterion.value" item="listItem" open="(" separator=",">
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Update_By_Example_Where_Clause">
+    <where>
+      <foreach collection="example.oredCriteria" item="criteria" separator="or">
+        <if test="criteria.valid">
+          <trim prefix="(" prefixOverrides="and" suffix=")">
+            <foreach collection="criteria.criteria" item="criterion">
+              <choose>
+                <when test="criterion.noValue">
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue">
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue">
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue">
+                  and ${criterion.condition}
+                  <foreach close=")" collection="criterion.value" item="listItem" open="(" separator=",">
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Base_Column_List">
+    Id, log_visit_id, visit_method, visit_params, visit_throwing_erro, visit_result, 
+    visit_num, visit_start_time, visit_end_time, visit_time_consuming, create_time, update_time, 
+    is_delete
+  </sql>
+  <select id="selectByExample" parameterType="model.TbLogVisitStatisticsExample" resultMap="BaseResultMap">
+    select
+    <if test="distinct">
+      distinct
+    </if>
+    <include refid="Base_Column_List" />
+    from tb_log_visit_statistics
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null">
+      order by ${orderByClause}
+    </if>
+  </select>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Long" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from tb_log_visit_statistics
+    where Id = #{id,jdbcType=BIGINT}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Long">
+    delete from tb_log_visit_statistics
+    where Id = #{id,jdbcType=BIGINT}
+  </delete>
+  <delete id="deleteByExample" parameterType="model.TbLogVisitStatisticsExample">
+    delete from tb_log_visit_statistics
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+  </delete>
+  <insert id="insert" parameterType="model.TbLogVisitStatistics">
+    <selectKey keyProperty="id" order="AFTER" resultType="java.lang.Long">
+      SELECT LAST_INSERT_ID()
+    </selectKey>
+    insert into tb_log_visit_statistics (log_visit_id, visit_method, visit_params, 
+      visit_throwing_erro, visit_result, visit_num, 
+      visit_start_time, visit_end_time, visit_time_consuming, 
+      create_time, update_time, is_delete
+      )
+    values (#{logVisitId,jdbcType=BIGINT}, #{visitMethod,jdbcType=VARCHAR}, #{visitParams,jdbcType=VARCHAR}, 
+      #{visitThrowingErro,jdbcType=VARCHAR}, #{visitResult,jdbcType=VARCHAR}, #{visitNum,jdbcType=BIGINT}, 
+      #{visitStartTime,jdbcType=TIMESTAMP}, #{visitEndTime,jdbcType=TIMESTAMP}, #{visitTimeConsuming,jdbcType=BIGINT}, 
+      #{createTime,jdbcType=TIMESTAMP}, #{updateTime,jdbcType=TIMESTAMP}, #{isDelete,jdbcType=BIGINT}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="model.TbLogVisitStatistics">
+    <selectKey keyProperty="id" order="AFTER" resultType="java.lang.Long">
+      SELECT LAST_INSERT_ID()
+    </selectKey>
+    insert into tb_log_visit_statistics
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="logVisitId != null">
+        log_visit_id,
+      </if>
+      <if test="visitMethod != null">
+        visit_method,
+      </if>
+      <if test="visitParams != null">
+        visit_params,
+      </if>
+      <if test="visitThrowingErro != null">
+        visit_throwing_erro,
+      </if>
+      <if test="visitResult != null">
+        visit_result,
+      </if>
+      <if test="visitNum != null">
+        visit_num,
+      </if>
+      <if test="visitStartTime != null">
+        visit_start_time,
+      </if>
+      <if test="visitEndTime != null">
+        visit_end_time,
+      </if>
+      <if test="visitTimeConsuming != null">
+        visit_time_consuming,
+      </if>
+      <if test="createTime != null">
+        create_time,
+      </if>
+      <if test="updateTime != null">
+        update_time,
+      </if>
+      <if test="isDelete != null">
+        is_delete,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="logVisitId != null">
+        #{logVisitId,jdbcType=BIGINT},
+      </if>
+      <if test="visitMethod != null">
+        #{visitMethod,jdbcType=VARCHAR},
+      </if>
+      <if test="visitParams != null">
+        #{visitParams,jdbcType=VARCHAR},
+      </if>
+      <if test="visitThrowingErro != null">
+        #{visitThrowingErro,jdbcType=VARCHAR},
+      </if>
+      <if test="visitResult != null">
+        #{visitResult,jdbcType=VARCHAR},
+      </if>
+      <if test="visitNum != null">
+        #{visitNum,jdbcType=BIGINT},
+      </if>
+      <if test="visitStartTime != null">
+        #{visitStartTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="visitEndTime != null">
+        #{visitEndTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="visitTimeConsuming != null">
+        #{visitTimeConsuming,jdbcType=BIGINT},
+      </if>
+      <if test="createTime != null">
+        #{createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updateTime != null">
+        #{updateTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="isDelete != null">
+        #{isDelete,jdbcType=BIGINT},
+      </if>
+    </trim>
+  </insert>
+  <select id="countByExample" parameterType="model.TbLogVisitStatisticsExample" resultType="java.lang.Integer">
+    select count(*) from tb_log_visit_statistics
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+  </select>
+  <update id="updateByExampleSelective" parameterType="map">
+    update tb_log_visit_statistics
+    <set>
+      <if test="record.id != null">
+        Id = #{record.id,jdbcType=BIGINT},
+      </if>
+      <if test="record.logVisitId != null">
+        log_visit_id = #{record.logVisitId,jdbcType=BIGINT},
+      </if>
+      <if test="record.visitMethod != null">
+        visit_method = #{record.visitMethod,jdbcType=VARCHAR},
+      </if>
+      <if test="record.visitParams != null">
+        visit_params = #{record.visitParams,jdbcType=VARCHAR},
+      </if>
+      <if test="record.visitThrowingErro != null">
+        visit_throwing_erro = #{record.visitThrowingErro,jdbcType=VARCHAR},
+      </if>
+      <if test="record.visitResult != null">
+        visit_result = #{record.visitResult,jdbcType=VARCHAR},
+      </if>
+      <if test="record.visitNum != null">
+        visit_num = #{record.visitNum,jdbcType=BIGINT},
+      </if>
+      <if test="record.visitStartTime != null">
+        visit_start_time = #{record.visitStartTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="record.visitEndTime != null">
+        visit_end_time = #{record.visitEndTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="record.visitTimeConsuming != null">
+        visit_time_consuming = #{record.visitTimeConsuming,jdbcType=BIGINT},
+      </if>
+      <if test="record.createTime != null">
+        create_time = #{record.createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="record.updateTime != null">
+        update_time = #{record.updateTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="record.isDelete != null">
+        is_delete = #{record.isDelete,jdbcType=BIGINT},
+      </if>
+    </set>
+    <if test="_parameter != null">
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByExample" parameterType="map">
+    update tb_log_visit_statistics
+    set Id = #{record.id,jdbcType=BIGINT},
+      log_visit_id = #{record.logVisitId,jdbcType=BIGINT},
+      visit_method = #{record.visitMethod,jdbcType=VARCHAR},
+      visit_params = #{record.visitParams,jdbcType=VARCHAR},
+      visit_throwing_erro = #{record.visitThrowingErro,jdbcType=VARCHAR},
+      visit_result = #{record.visitResult,jdbcType=VARCHAR},
+      visit_num = #{record.visitNum,jdbcType=BIGINT},
+      visit_start_time = #{record.visitStartTime,jdbcType=TIMESTAMP},
+      visit_end_time = #{record.visitEndTime,jdbcType=TIMESTAMP},
+      visit_time_consuming = #{record.visitTimeConsuming,jdbcType=BIGINT},
+      create_time = #{record.createTime,jdbcType=TIMESTAMP},
+      update_time = #{record.updateTime,jdbcType=TIMESTAMP},
+      is_delete = #{record.isDelete,jdbcType=BIGINT}
+    <if test="_parameter != null">
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByPrimaryKeySelective" parameterType="model.TbLogVisitStatistics">
+    update tb_log_visit_statistics
+    <set>
+      <if test="logVisitId != null">
+        log_visit_id = #{logVisitId,jdbcType=BIGINT},
+      </if>
+      <if test="visitMethod != null">
+        visit_method = #{visitMethod,jdbcType=VARCHAR},
+      </if>
+      <if test="visitParams != null">
+        visit_params = #{visitParams,jdbcType=VARCHAR},
+      </if>
+      <if test="visitThrowingErro != null">
+        visit_throwing_erro = #{visitThrowingErro,jdbcType=VARCHAR},
+      </if>
+      <if test="visitResult != null">
+        visit_result = #{visitResult,jdbcType=VARCHAR},
+      </if>
+      <if test="visitNum != null">
+        visit_num = #{visitNum,jdbcType=BIGINT},
+      </if>
+      <if test="visitStartTime != null">
+        visit_start_time = #{visitStartTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="visitEndTime != null">
+        visit_end_time = #{visitEndTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="visitTimeConsuming != null">
+        visit_time_consuming = #{visitTimeConsuming,jdbcType=BIGINT},
+      </if>
+      <if test="createTime != null">
+        create_time = #{createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updateTime != null">
+        update_time = #{updateTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="isDelete != null">
+        is_delete = #{isDelete,jdbcType=BIGINT},
+      </if>
+    </set>
+    where Id = #{id,jdbcType=BIGINT}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="model.TbLogVisitStatistics">
+    update tb_log_visit_statistics
+    set log_visit_id = #{logVisitId,jdbcType=BIGINT},
+      visit_method = #{visitMethod,jdbcType=VARCHAR},
+      visit_params = #{visitParams,jdbcType=VARCHAR},
+      visit_throwing_erro = #{visitThrowingErro,jdbcType=VARCHAR},
+      visit_result = #{visitResult,jdbcType=VARCHAR},
+      visit_num = #{visitNum,jdbcType=BIGINT},
+      visit_start_time = #{visitStartTime,jdbcType=TIMESTAMP},
+      visit_end_time = #{visitEndTime,jdbcType=TIMESTAMP},
+      visit_time_consuming = #{visitTimeConsuming,jdbcType=BIGINT},
+      create_time = #{createTime,jdbcType=TIMESTAMP},
+      update_time = #{updateTime,jdbcType=TIMESTAMP},
+      is_delete = #{isDelete,jdbcType=BIGINT}
+    where Id = #{id,jdbcType=BIGINT}
+  </update>
+</mapper>

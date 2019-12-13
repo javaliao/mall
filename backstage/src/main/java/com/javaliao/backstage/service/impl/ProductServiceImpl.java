@@ -37,6 +37,7 @@ public class ProductServiceImpl implements ProductService {
         if(StringTool.isEmpty(tbProduct.getProductSeller())){
             tbProduct.setProductSeller(null);
         }
+        tbProduct.setIsDelete(0L);
         List<TbProduct> tbProducts = productMapper.select(tbProduct);
         modelMap.addAttribute("tbProducts",tbProducts);
     }
@@ -45,6 +46,7 @@ public class ProductServiceImpl implements ProductService {
     public void getProductById(String productId, ModelMap modelMap) {
         TbProduct tbProduct = new TbProduct();
         tbProduct.setId(productId);
+        tbProduct.setIsDelete(0L);
         TbProduct tbProductData = productMapper.selectOne(tbProduct);
         modelMap.addAttribute("tbProduct",tbProductData);
     }
@@ -88,6 +90,7 @@ public class ProductServiceImpl implements ProductService {
     public void getProductCategoryById(String productCategoryId, ModelMap modelMap) {
         TbProductCategory tbProductCategory = new TbProductCategory();
         tbProductCategory.setId(productCategoryId);
+        tbProductCategory.setIsDelete(0L);
         TbProductCategory tbProductCategoryData = productCategoryMapper.selectOne(tbProductCategory);
         modelMap.addAttribute("tbProductCategory",tbProductCategoryData);
     }
