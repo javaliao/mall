@@ -28,3 +28,7 @@ druid监控地址：http://localhost:8085/druid/login.html。
 ###使用log4j作为日志文件,我配置的日志文件路径是E:\Project\PersonalProject\DistributedProject\Log\spring.log
 
 
+##项目部署
+将jar上传到服务器的usr/local/apache-tomcat/webapps下
+cd /usr/local/apache-tomcat/webapps
+java -jar backstage-0.0.1-SNAPSHOT.jar &

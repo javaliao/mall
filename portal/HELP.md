@@ -44,6 +44,16 @@ basic作为基础库，用于存放公共方法，或者工具类
 
 bean作为实体库，用于存放实体类
 
+service-zuul作为网关路由
+
+service-ribbon作为负载均衡
+
+service-feign作为服务暴露
+
+eurekaserver作为注册中心
+
+config-service作为配置中心服务端
+
 http://localhost:5000服务链路追踪
 
 http://localhost:8761注册中心

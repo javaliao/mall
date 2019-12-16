@@ -27,10 +27,10 @@ public class ThreadTool {
      * @param method 被调用的方法
      * @param param 方法参数
      */
-    public static void runMethod(int tasks, ModelMap modelMap, String modelName, Object service, Method method, Object... param){
-        final CountDownLatch latch = new CountDownLatch(tasks);
+    public static void runMethod(CountDownLatch tasks, ModelMap modelMap, String modelName, Object service, Method method, Object... param){
         threadPoolTaskExecutor.submit(new RunInThreadPool(
-                latch,modelMap,modelName,service,method,param));
+                tasks,modelMap,modelName,service,method,param));
     }
+
 
 }
