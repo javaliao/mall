@@ -4,6 +4,8 @@ import com.javaliao.backstage.bean.TbProduct;
 import com.javaliao.backstage.bean.TbProductCategory;
 import org.springframework.ui.ModelMap;
 
+import java.util.List;
+
 public interface ProductService {
 
     void getProductList(ModelMap modelMap);
@@ -29,4 +31,6 @@ public interface ProductService {
     void insertProductCategory(TbProductCategory tbProductCategory) throws Exception;
 
     void getProductCategoryTwoById(String productCategoryId, ModelMap modelMap);
+
+    void insertProductList(List<TbProduct> list);
 }

@@ -9,6 +9,7 @@ import com.javaliao.backstage.util.StringTool;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.ui.ModelMap;
+import org.springframework.util.CollectionUtils;
 
 import java.util.List;
 
@@ -133,5 +134,18 @@ public class ProductServiceImpl implements ProductService {
         List<TbProductCategory> tbProductCategorysData = productCategoryMapper.select(tbProductCategory);
         modelMap.addAttribute("tbProductCategories",tbProductCategorysData);
         modelMap.addAttribute("parentId",productCategoryId);
+    }
+
+    @Override
+    public void insertProductList(List<TbProduct> list) {
+        try{
+            if(!CollectionUtils.isEmpty(list)){
+                for (TbProduct tbProduct : list) {
+                    productMapper.insertSelective(tbProduct);
+                }
+            }
+        }catch (Exception e){
+            e.printStackTrace();
+        }
     }
 }

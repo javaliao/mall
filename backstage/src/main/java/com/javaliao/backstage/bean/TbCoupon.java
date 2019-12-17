@@ -1,6 +1,8 @@
 package com.javaliao.backstage.bean;
 
 
+import java.util.Date;
+
 public class TbCoupon {
 
   private long id;
@@ -15,8 +17,8 @@ public class TbCoupon {
   private java.sql.Timestamp endTime;
   private String useType;
   private String couponCode;
-  private java.sql.Timestamp createTime;
-  private java.sql.Timestamp updateTime;
+  private Date createTime;
+  private Date updateTime;
   private long isDelete;
 
 
@@ -127,24 +129,21 @@ public class TbCoupon {
     this.couponCode = couponCode;
   }
 
-
-  public java.sql.Timestamp getCreateTime() {
+  public Date getCreateTime() {
     return createTime;
   }
 
-  public void setCreateTime(java.sql.Timestamp createTime) {
+  public void setCreateTime(Date createTime) {
     this.createTime = createTime;
   }
 
-
-  public java.sql.Timestamp getUpdateTime() {
+  public Date getUpdateTime() {
     return updateTime;
   }
 
-  public void setUpdateTime(java.sql.Timestamp updateTime) {
+  public void setUpdateTime(Date updateTime) {
     this.updateTime = updateTime;
   }
-
 
   public long getIsDelete() {
     return isDelete;

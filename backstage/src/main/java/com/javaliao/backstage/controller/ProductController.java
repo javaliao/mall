@@ -1,16 +1,27 @@
 package com.javaliao.backstage.controller;
 
+import cn.hutool.core.bean.BeanUtil;
 import com.javaliao.backstage.bean.TbProduct;
 import com.javaliao.backstage.bean.TbProductCategory;
 import com.javaliao.backstage.service.ProductService;
+import com.javaliao.backstage.util.EasyExcelUtil;
+import com.javaliao.backstage.vo.ProductVo;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
+import org.springframework.util.CollectionUtils;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.multipart.MultipartFile;
+
+import javax.servlet.http.HttpServletRequest;
+import java.util.List;
+import java.util.Map;
+import java.util.stream.Collectors;
 
 @Controller
 @RequestMapping("/productController")
@@ -104,5 +115,34 @@ public class ProductController extends BaseController {
         productService.getProductCategoryTwoById(productCategoryId, modelMap);
         return "productCategory/listTwo";
     }
+    @ApiOperation("导入商品数据")
+    @PostMapping("/upload")
+    public String uploadNew(HttpServletRequest request, @RequestParam("file") MultipartFile file) {
+        try {
+            Map<String, Object> result = EasyExcelUtil.readExcel(file, new ProductVo(), 1);
+            Boolean flag = (Boolean) result.get("flag");
+            if (flag) {
+                List<Object> list = (List<Object>) result.get("datas");
+                if (!CollectionUtils.isEmpty(list)) {
+                    //toDo  这个测试一下可不可以删除
+                    List<ProductVo> productVos = list.stream().map(o -> {
+                        ProductVo productVo = new ProductVo();
+                        BeanUtil.copyProperties(o, productVo);
+                        return productVo;
+                    }).collect(Collectors.toList());
 
+                    List<TbProduct> products = productVos.stream().map(productVo -> {
+                        TbProduct tbProduct = new TbProduct();
+                        BeanUtil.copyProperties(productVo, tbProduct);
+                        return tbProduct;
+                    }).collect(Collectors.toList());
+                    productService.insertProductList(products);
+                }
+            }
+            return "product/list";
+        } catch (Exception e) {
+            e.printStackTrace();
+            return "error/exceptionCatch.ftl";
+        }
+    }
 }
