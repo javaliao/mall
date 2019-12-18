@@ -57,7 +57,7 @@ public class ProductController extends BaseController {
     @PostMapping("/insertProduct")
     public String insertProduct(TbProduct tbProduct) throws Exception {
         productService.insertProduct(tbProduct);
-        return "product/list";
+        return "redirect:getProductList";
     }
 
     @ApiOperation("更新商品")
@@ -117,7 +117,7 @@ public class ProductController extends BaseController {
     }
     @ApiOperation("导入商品数据")
     @PostMapping("/upload")
-    public String uploadNew(HttpServletRequest request, @RequestParam("file") MultipartFile file) {
+    public String uploadNew(@RequestParam("file") MultipartFile file) {
         try {
             Map<String, Object> result = EasyExcelUtil.readExcel(file, new ProductVo(), 1);
             Boolean flag = (Boolean) result.get("flag");

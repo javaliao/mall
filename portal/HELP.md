@@ -61,3 +61,4 @@ http://localhost:8761注册中心
 http://localhost:5000/api-a/hi?name=aa从zuul到ribbon到service-hi
 
 http://localhost:5000/api-b/hi?name=aa从zuul到feign到service-hi
+

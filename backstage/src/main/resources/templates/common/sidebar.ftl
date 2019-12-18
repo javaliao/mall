@@ -42,19 +42,25 @@
                         <a href="/productController/getProductCategoryList"><i class="glyphicon glyphicon-equalizer"></i> 商品分类管理</a>
                     </li>
                     <li style="height:30px;">
-                        <a href="/sellerController/getSellerList"><i class="glyphicon glyphicon-random"></i>卖家管理</a>
+                        <a href="/sellerController/getSellerList"><i class="glyphicon glyphicon-usd"></i>卖家管理</a>
                     </li>
                     <li style="height:30px;">
-                        <a href="/userController/getUserList"><i class="glyphicon glyphicon-hdd"></i>用户管理</a>
+                        <a href="/userController/getUserList"><i class="glyphicon glyphicon-user"></i>用户管理</a>
                     </li>
                     <li style="height:30px;">
-                        <a href="message.html"><i class="glyphicon glyphicon-comment"></i> 消息模板</a>
+                        <a href="/advertisementController/getAdvertisementList"><i class="glyphicon glyphicon-comment"></i> 广告管理</a>
                     </li>
                     <li style="height:30px;">
-                        <a href="project_type.html"><i class="glyphicon glyphicon-list"></i> 项目分类</a>
+                        <a href="/areaController/getAreaList"><i class="glyphicon glyphicon-th"></i> 地区管理</a>
                     </li>
                     <li style="height:30px;">
-                        <a href="tag.html"><i class="glyphicon glyphicon-tags"></i> 项目标签</a>
+                        <a href="/couponController/getCouponList"><i class="glyphicon glyphicon-bookmark"></i> 优惠券管理</a>
+                    </li>
+                    <li style="height:30px;">
+                        <a href="/columnController/getColumnList"><i class="glyphicon glyphicon-tags"></i> 栏目管理</a>
+                    </li>
+                    <li style="height:30px;">
+                        <a href="/specialTopicController/getSpecialTopicList"><i class="glyphicon glyphicon-tag"></i> 专题管理</a>
                     </li>
                 </ul>
             </li>
