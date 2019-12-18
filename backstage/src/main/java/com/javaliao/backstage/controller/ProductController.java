@@ -4,6 +4,7 @@ import cn.hutool.core.bean.BeanUtil;
 import com.javaliao.backstage.bean.TbProduct;
 import com.javaliao.backstage.bean.TbProductCategory;
 import com.javaliao.backstage.service.ProductService;
+import com.javaliao.backstage.util.BeanClone;
 import com.javaliao.backstage.util.EasyExcelUtil;
 import com.javaliao.backstage.vo.ProductVo;
 import io.swagger.annotations.Api;
@@ -118,13 +119,15 @@ public class ProductController extends BaseController {
     @ApiOperation("导入商品数据")
     @PostMapping("/upload")
     public String uploadNew(@RequestParam("file") MultipartFile file) {
+        //整改一：extends BaseController会捕获执行时抛出的异常，控制层就不需要加try-catch捕获了
+        //整改二：业务代码尽量写到ServiceImpl中，控制层做跳转
         try {
             Map<String, Object> result = EasyExcelUtil.readExcel(file, new ProductVo(), 1);
             Boolean flag = (Boolean) result.get("flag");
             if (flag) {
                 List<Object> list = (List<Object>) result.get("datas");
                 if (!CollectionUtils.isEmpty(list)) {
-                    //toDo  这个测试一下可不可以删除
+                    //整改三：参考BeanClone.clone(T po, Class<K> clz)进行修改
                     List<ProductVo> productVos = list.stream().map(o -> {
                         ProductVo productVo = new ProductVo();
                         BeanUtil.copyProperties(o, productVo);
@@ -136,13 +139,16 @@ public class ProductController extends BaseController {
                         BeanUtil.copyProperties(productVo, tbProduct);
                         return tbProduct;
                     }).collect(Collectors.toList());
+                    //整改四：如果参数为空，没有添加，没有反馈
                     productService.insertProductList(products);
                 }
             }
             return "product/list";
         } catch (Exception e) {
             e.printStackTrace();
+            //整改五：直接跳转freemark无法获取${Request.ex}
             return "error/exceptionCatch.ftl";
         }
+        //整改六：看看能否写一个公共方法调用，导入的数据不只是商品导入，如果每一个页面都需要导入数据，每次都写单独的方法，代码太冗余了
     }
 }

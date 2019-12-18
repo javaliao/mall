@@ -14,7 +14,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 @Controller
 @RequestMapping("/areaController")
 @Api(tags = "AreaController", description = "地区管理")
-public class AreaController {
+public class AreaController extends BaseController{
     @Autowired
     private AreaService areaService;
 

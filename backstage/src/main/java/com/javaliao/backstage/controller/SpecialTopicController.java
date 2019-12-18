@@ -14,7 +14,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 @Controller
 @RequestMapping("/specialTopicController")
 @Api(tags = "SpecialTopicController", description = "专题管理")
-public class SpecialTopicController {
+public class SpecialTopicController extends BaseController{
     @Autowired
     private SpecialTopicService specialTopicService;
 

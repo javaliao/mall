@@ -10,7 +10,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 @Controller
 @RequestMapping("/jumpController")
 @Api(tags = "JumpController",description = "跳转管理")
-public class JumpController {
+public class JumpController extends BaseController{
 
 
     @ApiOperation("异常页")

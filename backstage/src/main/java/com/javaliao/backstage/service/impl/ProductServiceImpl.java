@@ -138,6 +138,8 @@ public class ProductServiceImpl implements ProductService {
 
     @Override
     public void insertProductList(List<TbProduct> list) {
+        //try放在for循环的里面所有的for循环都会执行，当遇到异常时，抛出异常继续执行；
+        //放在外面，当遇到异常时，抛出异常，后面的循环就会终止，并不会执行。
         try{
             if(!CollectionUtils.isEmpty(list)){
                 for (TbProduct tbProduct : list) {

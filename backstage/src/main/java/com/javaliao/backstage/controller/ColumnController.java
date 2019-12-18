@@ -14,7 +14,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 @Controller
 @RequestMapping("/columnController")
 @Api(tags = "ColumnController", description = "栏目管理")
-public class ColumnController {
+public class ColumnController extends BaseController{
     @Autowired
     private ColumnService columnService;
 

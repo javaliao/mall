@@ -14,7 +14,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 @Api(tags = "userController",description = "用户管理")
 @Controller
 @RequestMapping("/userController")
-public class UserController {
+public class UserController extends BaseController{
 
     @Autowired
     UserService userService;

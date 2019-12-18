@@ -14,7 +14,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 @Api(tags = "sellerController",description = "卖家管理")
 @Controller
 @RequestMapping("/sellerController")
-public class SellerController {
+public class SellerController extends BaseController{
 
     @Autowired
     SellerService sellerService;

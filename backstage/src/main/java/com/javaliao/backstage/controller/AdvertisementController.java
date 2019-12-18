@@ -14,7 +14,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 @Controller
 @RequestMapping("/advertisementController")
 @Api(tags = "AdvertisementController", description = "广告管理")
-public class AdvertisementController {
+public class AdvertisementController extends BaseController{
     @Autowired
     private AdvertisementService advertisementService;
 
