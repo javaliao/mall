@@ -1,5 +1,11 @@
 package common;
 
+import constant.DataConstant;
+
+import java.lang.reflect.Array;
+import java.util.Collection;
+import java.util.Map;
+
 /**
  * @Author:Liaozhiwei
  * @Date: 2019/11/11 17:40
@@ -15,6 +21,52 @@ public class CommonResult<T> {
         this.code = code;
         this.message = message;
         this.data = data;
+    }
+
+    /**
+     * 对象空判断
+     * @param obj
+     * @return
+     */
+    public static boolean isEmpty(Object obj) {
+        if (obj == null) {
+            return true;
+        }else if (obj instanceof CharSequence){//CharSequence接口的实现类：CharBuffer、String、StringBuffer、StringBuilder
+            return ((CharSequence) obj).length() == 0;
+        }
+        else if (obj instanceof Collection) {//集合根接口Collection
+            return ((Collection) obj).isEmpty();
+        }
+        else if (obj instanceof Map) {//Map接口
+            return ((Map) obj).isEmpty();
+        }
+        else if (obj.getClass().isArray()) {//是否为数组
+            return Array.getLength(obj) == 0;
+        }
+        return false;
+    }
+
+    /**
+     * 判断集合或者对象是否为空
+     * @param data
+     * @return
+     */
+    public static Object checkNull(Object data){
+        //对象判断是否为空
+        if(isEmpty(data)){
+            return DataConstant.NO_DATA;
+        }else {
+            return data;
+        }
+    }
+
+    public static Object ckeckModify(int num ){
+        if(num <= 0){
+            return DataConstant.MODIFY_DATA_FALSE;
+        }else {
+            return DataConstant.MODIFY_DATA_SUCCESS;
+        }
+
     }
 
     /**

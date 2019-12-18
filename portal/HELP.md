@@ -1,3 +1,5 @@
+
+
 #分布式电商网站前台技术选型
 
 ##使用freemark作为模板引擎,后期SEO推广
@@ -34,7 +36,7 @@
 
 ##使用Hadoop的yarn作为资源管理器
 
-##使用Hadoop的mapreduce作为并行处理的计算模型、框架和平台，来计算  
+##使用Hadoop的mapreduce作为并行处理的计算模型、框架和平台，来计算
 
 ##使用Hadoop的common一些工具
 
@@ -44,21 +46,22 @@ basic作为基础库，用于存放公共方法，或者工具类
 
 bean作为实体库，用于存放实体类
 
-service-zuul作为网关路由
+service-zuul作为路由与服务链路追踪，用于请求转发与监控
 
-service-ribbon作为负载均衡
+config-server作为配置中心服务端，用于统一配置
 
-service-feign作为服务暴露
+home作为网站首页，访问地址：http://localhost:8880/
 
-eurekaserver作为注册中心
+#项目前期测试
 
-config-service作为配置中心服务端
+eurakaserver作为测试的注册中心，由于单一注册中心不是高可用，后期可能更换，前期先用着
 
-http://localhost:5000服务链路追踪
+serice-feign与service-ribbon和serivce-hi作为测试feign与ribbon的项目，后期项目不可将请求路由到这二个项目中
 
-http://localhost:8761注册中心
+启动zuul项目，euraka项目可访问http://localhost:5000服务链路追踪
 
-http://localhost:5000/api-a/hi?name=aa从zuul到ribbon到service-hi
+启动euraka项目可访问http://localhost:8761注册中心
 
-http://localhost:5000/api-b/hi?name=aa从zuul到feign到service-hi
+启动zuul项目，euraka项目，ribbon项目,service-hi项目可访问http://localhost:5000/api-a/hi?name=aa从zuul到ribbon到service-hi
 
+启动zuul项目，euraka项目，feign项目,service-hi项目可访问http://localhost:5000/api-b/hi?name=aa从zuul到feign到service-hi
