@@ -65,3 +65,5 @@ serice-feign与service-ribbon和serivce-hi作为测试feign与ribbon的项目，
 启动zuul项目，euraka项目，ribbon项目,service-hi项目可访问http://localhost:5000/api-a/hi?name=aa从zuul到ribbon到service-hi
 
 启动zuul项目，euraka项目，feign项目,service-hi项目可访问http://localhost:5000/api-b/hi?name=aa从zuul到feign到service-hi
+
+#项目目前处于基础架构搭建中，拉取代码可能出现maven错误或者版本冲突，依赖缺失，项目跑不动等问题，请耐心等待，后期正式搭建之后会迭代版本

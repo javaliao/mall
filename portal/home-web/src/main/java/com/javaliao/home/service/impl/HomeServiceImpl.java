@@ -1,6 +1,6 @@
 package com.javaliao.home.service.impl;
 
-import com.javaliao.feign.feignInterface.HomeServiceFeign;
+import com.javaliao.home.feign.HomeServiceFeign;
 import com.javaliao.home.service.HomeService;
 import common.CommonResult;
 import org.springframework.beans.factory.annotation.Autowired;
