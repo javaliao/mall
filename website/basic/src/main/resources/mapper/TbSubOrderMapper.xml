@@ -1,0 +1,433 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.javaliao.basic.mapper.TbSubOrderMapper">
+  <resultMap id="BaseResultMap" type="com.javaliao.basic.model.TbSubOrder">
+    <id column="Id" jdbcType="BIGINT" property="id" />
+    <result column="product_id" jdbcType="BIGINT" property="productId" />
+    <result column="seller_id" jdbcType="BIGINT" property="sellerId" />
+    <result column="user_coupon_id" jdbcType="BIGINT" property="userCouponId" />
+    <result column="order_no" jdbcType="BIGINT" property="orderNo" />
+    <result column="order_sn" jdbcType="BIGINT" property="orderSn" />
+    <result column="product_name" jdbcType="VARCHAR" property="productName" />
+    <result column="product_icon" jdbcType="VARCHAR" property="productIcon" />
+    <result column="product_specifications" jdbcType="VARCHAR" property="productSpecifications" />
+    <result column="product_brand_name" jdbcType="VARCHAR" property="productBrandName" />
+    <result column="product_seller_name" jdbcType="VARCHAR" property="productSellerName" />
+    <result column="product_price" jdbcType="VARCHAR" property="productPrice" />
+    <result column="product_quantity" jdbcType="VARCHAR" property="productQuantity" />
+    <result column="product_now_price" jdbcType="VARCHAR" property="productNowPrice" />
+    <result column="order_state" jdbcType="VARCHAR" property="orderState" />
+    <result column="product_coupon_price" jdbcType="VARCHAR" property="productCouponPrice" />
+    <result column="create_time" jdbcType="TIMESTAMP" property="createTime" />
+    <result column="update_time" jdbcType="TIMESTAMP" property="updateTime" />
+    <result column="is_delete" jdbcType="BIGINT" property="isDelete" />
+  </resultMap>
+  <sql id="Example_Where_Clause">
+    <where>
+      <foreach collection="oredCriteria" item="criteria" separator="or">
+        <if test="criteria.valid">
+          <trim prefix="(" prefixOverrides="and" suffix=")">
+            <foreach collection="criteria.criteria" item="criterion">
+              <choose>
+                <when test="criterion.noValue">
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue">
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue">
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue">
+                  and ${criterion.condition}
+                  <foreach close=")" collection="criterion.value" item="listItem" open="(" separator=",">
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Update_By_Example_Where_Clause">
+    <where>
+      <foreach collection="example.oredCriteria" item="criteria" separator="or">
+        <if test="criteria.valid">
+          <trim prefix="(" prefixOverrides="and" suffix=")">
+            <foreach collection="criteria.criteria" item="criterion">
+              <choose>
+                <when test="criterion.noValue">
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue">
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue">
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue">
+                  and ${criterion.condition}
+                  <foreach close=")" collection="criterion.value" item="listItem" open="(" separator=",">
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Base_Column_List">
+    Id, product_id, seller_id, user_coupon_id, order_no, order_sn, product_name, product_icon, 
+    product_specifications, product_brand_name, product_seller_name, product_price, product_quantity, 
+    product_now_price, order_state, product_coupon_price, create_time, update_time, is_delete
+  </sql>
+  <select id="selectByExample" parameterType="com.javaliao.basic.model.TbSubOrderExample" resultMap="BaseResultMap">
+    select
+    <if test="distinct">
+      distinct
+    </if>
+    <include refid="Base_Column_List" />
+    from tb_sub_order
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null">
+      order by ${orderByClause}
+    </if>
+  </select>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Long" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from tb_sub_order
+    where Id = #{id,jdbcType=BIGINT}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Long">
+    delete from tb_sub_order
+    where Id = #{id,jdbcType=BIGINT}
+  </delete>
+  <delete id="deleteByExample" parameterType="com.javaliao.basic.model.TbSubOrderExample">
+    delete from tb_sub_order
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+  </delete>
+  <insert id="insert" parameterType="com.javaliao.basic.model.TbSubOrder">
+    <selectKey keyProperty="id" order="AFTER" resultType="java.lang.Long">
+      SELECT LAST_INSERT_ID()
+    </selectKey>
+    insert into tb_sub_order (product_id, seller_id, user_coupon_id, 
+      order_no, order_sn, product_name, 
+      product_icon, product_specifications, product_brand_name, 
+      product_seller_name, product_price, product_quantity, 
+      product_now_price, order_state, product_coupon_price, 
+      create_time, update_time, is_delete
+      )
+    values (#{productId,jdbcType=BIGINT}, #{sellerId,jdbcType=BIGINT}, #{userCouponId,jdbcType=BIGINT}, 
+      #{orderNo,jdbcType=BIGINT}, #{orderSn,jdbcType=BIGINT}, #{productName,jdbcType=VARCHAR}, 
+      #{productIcon,jdbcType=VARCHAR}, #{productSpecifications,jdbcType=VARCHAR}, #{productBrandName,jdbcType=VARCHAR}, 
+      #{productSellerName,jdbcType=VARCHAR}, #{productPrice,jdbcType=VARCHAR}, #{productQuantity,jdbcType=VARCHAR}, 
+      #{productNowPrice,jdbcType=VARCHAR}, #{orderState,jdbcType=VARCHAR}, #{productCouponPrice,jdbcType=VARCHAR}, 
+      #{createTime,jdbcType=TIMESTAMP}, #{updateTime,jdbcType=TIMESTAMP}, #{isDelete,jdbcType=BIGINT}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="com.javaliao.basic.model.TbSubOrder">
+    <selectKey keyProperty="id" order="AFTER" resultType="java.lang.Long">
+      SELECT LAST_INSERT_ID()
+    </selectKey>
+    insert into tb_sub_order
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="productId != null">
+        product_id,
+      </if>
+      <if test="sellerId != null">
+        seller_id,
+      </if>
+      <if test="userCouponId != null">
+        user_coupon_id,
+      </if>
+      <if test="orderNo != null">
+        order_no,
+      </if>
+      <if test="orderSn != null">
+        order_sn,
+      </if>
+      <if test="productName != null">
+        product_name,
+      </if>
+      <if test="productIcon != null">
+        product_icon,
+      </if>
+      <if test="productSpecifications != null">
+        product_specifications,
+      </if>
+      <if test="productBrandName != null">
+        product_brand_name,
+      </if>
+      <if test="productSellerName != null">
+        product_seller_name,
+      </if>
+      <if test="productPrice != null">
+        product_price,
+      </if>
+      <if test="productQuantity != null">
+        product_quantity,
+      </if>
+      <if test="productNowPrice != null">
+        product_now_price,
+      </if>
+      <if test="orderState != null">
+        order_state,
+      </if>
+      <if test="productCouponPrice != null">
+        product_coupon_price,
+      </if>
+      <if test="createTime != null">
+        create_time,
+      </if>
+      <if test="updateTime != null">
+        update_time,
+      </if>
+      <if test="isDelete != null">
+        is_delete,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="productId != null">
+        #{productId,jdbcType=BIGINT},
+      </if>
+      <if test="sellerId != null">
+        #{sellerId,jdbcType=BIGINT},
+      </if>
+      <if test="userCouponId != null">
+        #{userCouponId,jdbcType=BIGINT},
+      </if>
+      <if test="orderNo != null">
+        #{orderNo,jdbcType=BIGINT},
+      </if>
+      <if test="orderSn != null">
+        #{orderSn,jdbcType=BIGINT},
+      </if>
+      <if test="productName != null">
+        #{productName,jdbcType=VARCHAR},
+      </if>
+      <if test="productIcon != null">
+        #{productIcon,jdbcType=VARCHAR},
+      </if>
+      <if test="productSpecifications != null">
+        #{productSpecifications,jdbcType=VARCHAR},
+      </if>
+      <if test="productBrandName != null">
+        #{productBrandName,jdbcType=VARCHAR},
+      </if>
+      <if test="productSellerName != null">
+        #{productSellerName,jdbcType=VARCHAR},
+      </if>
+      <if test="productPrice != null">
+        #{productPrice,jdbcType=VARCHAR},
+      </if>
+      <if test="productQuantity != null">
+        #{productQuantity,jdbcType=VARCHAR},
+      </if>
+      <if test="productNowPrice != null">
+        #{productNowPrice,jdbcType=VARCHAR},
+      </if>
+      <if test="orderState != null">
+        #{orderState,jdbcType=VARCHAR},
+      </if>
+      <if test="productCouponPrice != null">
+        #{productCouponPrice,jdbcType=VARCHAR},
+      </if>
+      <if test="createTime != null">
+        #{createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updateTime != null">
+        #{updateTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="isDelete != null">
+        #{isDelete,jdbcType=BIGINT},
+      </if>
+    </trim>
+  </insert>
+  <select id="countByExample" parameterType="com.javaliao.basic.model.TbSubOrderExample" resultType="java.lang.Integer">
+    select count(*) from tb_sub_order
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+  </select>
+  <update id="updateByExampleSelective" parameterType="map">
+    update tb_sub_order
+    <set>
+      <if test="record.id != null">
+        Id = #{record.id,jdbcType=BIGINT},
+      </if>
+      <if test="record.productId != null">
+        product_id = #{record.productId,jdbcType=BIGINT},
+      </if>
+      <if test="record.sellerId != null">
+        seller_id = #{record.sellerId,jdbcType=BIGINT},
+      </if>
+      <if test="record.userCouponId != null">
+        user_coupon_id = #{record.userCouponId,jdbcType=BIGINT},
+      </if>
+      <if test="record.orderNo != null">
+        order_no = #{record.orderNo,jdbcType=BIGINT},
+      </if>
+      <if test="record.orderSn != null">
+        order_sn = #{record.orderSn,jdbcType=BIGINT},
+      </if>
+      <if test="record.productName != null">
+        product_name = #{record.productName,jdbcType=VARCHAR},
+      </if>
+      <if test="record.productIcon != null">
+        product_icon = #{record.productIcon,jdbcType=VARCHAR},
+      </if>
+      <if test="record.productSpecifications != null">
+        product_specifications = #{record.productSpecifications,jdbcType=VARCHAR},
+      </if>
+      <if test="record.productBrandName != null">
+        product_brand_name = #{record.productBrandName,jdbcType=VARCHAR},
+      </if>
+      <if test="record.productSellerName != null">
+        product_seller_name = #{record.productSellerName,jdbcType=VARCHAR},
+      </if>
+      <if test="record.productPrice != null">
+        product_price = #{record.productPrice,jdbcType=VARCHAR},
+      </if>
+      <if test="record.productQuantity != null">
+        product_quantity = #{record.productQuantity,jdbcType=VARCHAR},
+      </if>
+      <if test="record.productNowPrice != null">
+        product_now_price = #{record.productNowPrice,jdbcType=VARCHAR},
+      </if>
+      <if test="record.orderState != null">
+        order_state = #{record.orderState,jdbcType=VARCHAR},
+      </if>
+      <if test="record.productCouponPrice != null">
+        product_coupon_price = #{record.productCouponPrice,jdbcType=VARCHAR},
+      </if>
+      <if test="record.createTime != null">
+        create_time = #{record.createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="record.updateTime != null">
+        update_time = #{record.updateTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="record.isDelete != null">
+        is_delete = #{record.isDelete,jdbcType=BIGINT},
+      </if>
+    </set>
+    <if test="_parameter != null">
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByExample" parameterType="map">
+    update tb_sub_order
+    set Id = #{record.id,jdbcType=BIGINT},
+      product_id = #{record.productId,jdbcType=BIGINT},
+      seller_id = #{record.sellerId,jdbcType=BIGINT},
+      user_coupon_id = #{record.userCouponId,jdbcType=BIGINT},
+      order_no = #{record.orderNo,jdbcType=BIGINT},
+      order_sn = #{record.orderSn,jdbcType=BIGINT},
+      product_name = #{record.productName,jdbcType=VARCHAR},
+      product_icon = #{record.productIcon,jdbcType=VARCHAR},
+      product_specifications = #{record.productSpecifications,jdbcType=VARCHAR},
+      product_brand_name = #{record.productBrandName,jdbcType=VARCHAR},
+      product_seller_name = #{record.productSellerName,jdbcType=VARCHAR},
+      product_price = #{record.productPrice,jdbcType=VARCHAR},
+      product_quantity = #{record.productQuantity,jdbcType=VARCHAR},
+      product_now_price = #{record.productNowPrice,jdbcType=VARCHAR},
+      order_state = #{record.orderState,jdbcType=VARCHAR},
+      product_coupon_price = #{record.productCouponPrice,jdbcType=VARCHAR},
+      create_time = #{record.createTime,jdbcType=TIMESTAMP},
+      update_time = #{record.updateTime,jdbcType=TIMESTAMP},
+      is_delete = #{record.isDelete,jdbcType=BIGINT}
+    <if test="_parameter != null">
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByPrimaryKeySelective" parameterType="com.javaliao.basic.model.TbSubOrder">
+    update tb_sub_order
+    <set>
+      <if test="productId != null">
+        product_id = #{productId,jdbcType=BIGINT},
+      </if>
+      <if test="sellerId != null">
+        seller_id = #{sellerId,jdbcType=BIGINT},
+      </if>
+      <if test="userCouponId != null">
+        user_coupon_id = #{userCouponId,jdbcType=BIGINT},
+      </if>
+      <if test="orderNo != null">
+        order_no = #{orderNo,jdbcType=BIGINT},
+      </if>
+      <if test="orderSn != null">
+        order_sn = #{orderSn,jdbcType=BIGINT},
+      </if>
+      <if test="productName != null">
+        product_name = #{productName,jdbcType=VARCHAR},
+      </if>
+      <if test="productIcon != null">
+        product_icon = #{productIcon,jdbcType=VARCHAR},
+      </if>
+      <if test="productSpecifications != null">
+        product_specifications = #{productSpecifications,jdbcType=VARCHAR},
+      </if>
+      <if test="productBrandName != null">
+        product_brand_name = #{productBrandName,jdbcType=VARCHAR},
+      </if>
+      <if test="productSellerName != null">
+        product_seller_name = #{productSellerName,jdbcType=VARCHAR},
+      </if>
+      <if test="productPrice != null">
+        product_price = #{productPrice,jdbcType=VARCHAR},
+      </if>
+      <if test="productQuantity != null">
+        product_quantity = #{productQuantity,jdbcType=VARCHAR},
+      </if>
+      <if test="productNowPrice != null">
+        product_now_price = #{productNowPrice,jdbcType=VARCHAR},
+      </if>
+      <if test="orderState != null">
+        order_state = #{orderState,jdbcType=VARCHAR},
+      </if>
+      <if test="productCouponPrice != null">
+        product_coupon_price = #{productCouponPrice,jdbcType=VARCHAR},
+      </if>
+      <if test="createTime != null">
+        create_time = #{createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updateTime != null">
+        update_time = #{updateTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="isDelete != null">
+        is_delete = #{isDelete,jdbcType=BIGINT},
+      </if>
+    </set>
+    where Id = #{id,jdbcType=BIGINT}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.javaliao.basic.model.TbSubOrder">
+    update tb_sub_order
+    set product_id = #{productId,jdbcType=BIGINT},
+      seller_id = #{sellerId,jdbcType=BIGINT},
+      user_coupon_id = #{userCouponId,jdbcType=BIGINT},
+      order_no = #{orderNo,jdbcType=BIGINT},
+      order_sn = #{orderSn,jdbcType=BIGINT},
+      product_name = #{productName,jdbcType=VARCHAR},
+      product_icon = #{productIcon,jdbcType=VARCHAR},
+      product_specifications = #{productSpecifications,jdbcType=VARCHAR},
+      product_brand_name = #{productBrandName,jdbcType=VARCHAR},
+      product_seller_name = #{productSellerName,jdbcType=VARCHAR},
+      product_price = #{productPrice,jdbcType=VARCHAR},
+      product_quantity = #{productQuantity,jdbcType=VARCHAR},
+      product_now_price = #{productNowPrice,jdbcType=VARCHAR},
+      order_state = #{orderState,jdbcType=VARCHAR},
+      product_coupon_price = #{productCouponPrice,jdbcType=VARCHAR},
+      create_time = #{createTime,jdbcType=TIMESTAMP},
+      update_time = #{updateTime,jdbcType=TIMESTAMP},
+      is_delete = #{isDelete,jdbcType=BIGINT}
+    where Id = #{id,jdbcType=BIGINT}
+  </update>
+</mapper>

@@ -1,0 +1,306 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.javaliao.basic.mapper.TbPaymentInfoMapper">
+  <resultMap id="BaseResultMap" type="com.javaliao.basic.model.TbPaymentInfo">
+    <id column="Id" jdbcType="BIGINT" property="id" />
+    <result column="out_trade_no" jdbcType="BIGINT" property="outTradeNo" />
+    <result column="order_sn" jdbcType="VARCHAR" property="orderSn" />
+    <result column="alipay_trade_no" jdbcType="VARCHAR" property="alipayTradeNo" />
+    <result column="total_amount" jdbcType="VARCHAR" property="totalAmount" />
+    <result column="payment_status" jdbcType="VARCHAR" property="paymentStatus" />
+    <result column="callback_content" jdbcType="TIMESTAMP" property="callbackContent" />
+    <result column="subject" jdbcType="VARCHAR" property="subject" />
+    <result column="create_time" jdbcType="TIMESTAMP" property="createTime" />
+    <result column="update_time" jdbcType="TIMESTAMP" property="updateTime" />
+    <result column="is_delete" jdbcType="BIGINT" property="isDelete" />
+  </resultMap>
+  <sql id="Example_Where_Clause">
+    <where>
+      <foreach collection="oredCriteria" item="criteria" separator="or">
+        <if test="criteria.valid">
+          <trim prefix="(" prefixOverrides="and" suffix=")">
+            <foreach collection="criteria.criteria" item="criterion">
+              <choose>
+                <when test="criterion.noValue">
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue">
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue">
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue">
+                  and ${criterion.condition}
+                  <foreach close=")" collection="criterion.value" item="listItem" open="(" separator=",">
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Update_By_Example_Where_Clause">
+    <where>
+      <foreach collection="example.oredCriteria" item="criteria" separator="or">
+        <if test="criteria.valid">
+          <trim prefix="(" prefixOverrides="and" suffix=")">
+            <foreach collection="criteria.criteria" item="criterion">
+              <choose>
+                <when test="criterion.noValue">
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue">
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue">
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue">
+                  and ${criterion.condition}
+                  <foreach close=")" collection="criterion.value" item="listItem" open="(" separator=",">
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Base_Column_List">
+    Id, out_trade_no, order_sn, alipay_trade_no, total_amount, payment_status, callback_content, 
+    subject, create_time, update_time, is_delete
+  </sql>
+  <select id="selectByExample" parameterType="com.javaliao.basic.model.TbPaymentInfoExample" resultMap="BaseResultMap">
+    select
+    <if test="distinct">
+      distinct
+    </if>
+    <include refid="Base_Column_List" />
+    from tb_payment_info
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null">
+      order by ${orderByClause}
+    </if>
+  </select>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Long" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from tb_payment_info
+    where Id = #{id,jdbcType=BIGINT}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Long">
+    delete from tb_payment_info
+    where Id = #{id,jdbcType=BIGINT}
+  </delete>
+  <delete id="deleteByExample" parameterType="com.javaliao.basic.model.TbPaymentInfoExample">
+    delete from tb_payment_info
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+  </delete>
+  <insert id="insert" parameterType="com.javaliao.basic.model.TbPaymentInfo">
+    <selectKey keyProperty="id" order="AFTER" resultType="java.lang.Long">
+      SELECT LAST_INSERT_ID()
+    </selectKey>
+    insert into tb_payment_info (out_trade_no, order_sn, alipay_trade_no, 
+      total_amount, payment_status, callback_content, 
+      subject, create_time, update_time, 
+      is_delete)
+    values (#{outTradeNo,jdbcType=BIGINT}, #{orderSn,jdbcType=VARCHAR}, #{alipayTradeNo,jdbcType=VARCHAR}, 
+      #{totalAmount,jdbcType=VARCHAR}, #{paymentStatus,jdbcType=VARCHAR}, #{callbackContent,jdbcType=TIMESTAMP}, 
+      #{subject,jdbcType=VARCHAR}, #{createTime,jdbcType=TIMESTAMP}, #{updateTime,jdbcType=TIMESTAMP}, 
+      #{isDelete,jdbcType=BIGINT})
+  </insert>
+  <insert id="insertSelective" parameterType="com.javaliao.basic.model.TbPaymentInfo">
+    <selectKey keyProperty="id" order="AFTER" resultType="java.lang.Long">
+      SELECT LAST_INSERT_ID()
+    </selectKey>
+    insert into tb_payment_info
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="outTradeNo != null">
+        out_trade_no,
+      </if>
+      <if test="orderSn != null">
+        order_sn,
+      </if>
+      <if test="alipayTradeNo != null">
+        alipay_trade_no,
+      </if>
+      <if test="totalAmount != null">
+        total_amount,
+      </if>
+      <if test="paymentStatus != null">
+        payment_status,
+      </if>
+      <if test="callbackContent != null">
+        callback_content,
+      </if>
+      <if test="subject != null">
+        subject,
+      </if>
+      <if test="createTime != null">
+        create_time,
+      </if>
+      <if test="updateTime != null">
+        update_time,
+      </if>
+      <if test="isDelete != null">
+        is_delete,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="outTradeNo != null">
+        #{outTradeNo,jdbcType=BIGINT},
+      </if>
+      <if test="orderSn != null">
+        #{orderSn,jdbcType=VARCHAR},
+      </if>
+      <if test="alipayTradeNo != null">
+        #{alipayTradeNo,jdbcType=VARCHAR},
+      </if>
+      <if test="totalAmount != null">
+        #{totalAmount,jdbcType=VARCHAR},
+      </if>
+      <if test="paymentStatus != null">
+        #{paymentStatus,jdbcType=VARCHAR},
+      </if>
+      <if test="callbackContent != null">
+        #{callbackContent,jdbcType=TIMESTAMP},
+      </if>
+      <if test="subject != null">
+        #{subject,jdbcType=VARCHAR},
+      </if>
+      <if test="createTime != null">
+        #{createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updateTime != null">
+        #{updateTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="isDelete != null">
+        #{isDelete,jdbcType=BIGINT},
+      </if>
+    </trim>
+  </insert>
+  <select id="countByExample" parameterType="com.javaliao.basic.model.TbPaymentInfoExample" resultType="java.lang.Integer">
+    select count(*) from tb_payment_info
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+  </select>
+  <update id="updateByExampleSelective" parameterType="map">
+    update tb_payment_info
+    <set>
+      <if test="record.id != null">
+        Id = #{record.id,jdbcType=BIGINT},
+      </if>
+      <if test="record.outTradeNo != null">
+        out_trade_no = #{record.outTradeNo,jdbcType=BIGINT},
+      </if>
+      <if test="record.orderSn != null">
+        order_sn = #{record.orderSn,jdbcType=VARCHAR},
+      </if>
+      <if test="record.alipayTradeNo != null">
+        alipay_trade_no = #{record.alipayTradeNo,jdbcType=VARCHAR},
+      </if>
+      <if test="record.totalAmount != null">
+        total_amount = #{record.totalAmount,jdbcType=VARCHAR},
+      </if>
+      <if test="record.paymentStatus != null">
+        payment_status = #{record.paymentStatus,jdbcType=VARCHAR},
+      </if>
+      <if test="record.callbackContent != null">
+        callback_content = #{record.callbackContent,jdbcType=TIMESTAMP},
+      </if>
+      <if test="record.subject != null">
+        subject = #{record.subject,jdbcType=VARCHAR},
+      </if>
+      <if test="record.createTime != null">
+        create_time = #{record.createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="record.updateTime != null">
+        update_time = #{record.updateTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="record.isDelete != null">
+        is_delete = #{record.isDelete,jdbcType=BIGINT},
+      </if>
+    </set>
+    <if test="_parameter != null">
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByExample" parameterType="map">
+    update tb_payment_info
+    set Id = #{record.id,jdbcType=BIGINT},
+      out_trade_no = #{record.outTradeNo,jdbcType=BIGINT},
+      order_sn = #{record.orderSn,jdbcType=VARCHAR},
+      alipay_trade_no = #{record.alipayTradeNo,jdbcType=VARCHAR},
+      total_amount = #{record.totalAmount,jdbcType=VARCHAR},
+      payment_status = #{record.paymentStatus,jdbcType=VARCHAR},
+      callback_content = #{record.callbackContent,jdbcType=TIMESTAMP},
+      subject = #{record.subject,jdbcType=VARCHAR},
+      create_time = #{record.createTime,jdbcType=TIMESTAMP},
+      update_time = #{record.updateTime,jdbcType=TIMESTAMP},
+      is_delete = #{record.isDelete,jdbcType=BIGINT}
+    <if test="_parameter != null">
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByPrimaryKeySelective" parameterType="com.javaliao.basic.model.TbPaymentInfo">
+    update tb_payment_info
+    <set>
+      <if test="outTradeNo != null">
+        out_trade_no = #{outTradeNo,jdbcType=BIGINT},
+      </if>
+      <if test="orderSn != null">
+        order_sn = #{orderSn,jdbcType=VARCHAR},
+      </if>
+      <if test="alipayTradeNo != null">
+        alipay_trade_no = #{alipayTradeNo,jdbcType=VARCHAR},
+      </if>
+      <if test="totalAmount != null">
+        total_amount = #{totalAmount,jdbcType=VARCHAR},
+      </if>
+      <if test="paymentStatus != null">
+        payment_status = #{paymentStatus,jdbcType=VARCHAR},
+      </if>
+      <if test="callbackContent != null">
+        callback_content = #{callbackContent,jdbcType=TIMESTAMP},
+      </if>
+      <if test="subject != null">
+        subject = #{subject,jdbcType=VARCHAR},
+      </if>
+      <if test="createTime != null">
+        create_time = #{createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updateTime != null">
+        update_time = #{updateTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="isDelete != null">
+        is_delete = #{isDelete,jdbcType=BIGINT},
+      </if>
+    </set>
+    where Id = #{id,jdbcType=BIGINT}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.javaliao.basic.model.TbPaymentInfo">
+    update tb_payment_info
+    set out_trade_no = #{outTradeNo,jdbcType=BIGINT},
+      order_sn = #{orderSn,jdbcType=VARCHAR},
+      alipay_trade_no = #{alipayTradeNo,jdbcType=VARCHAR},
+      total_amount = #{totalAmount,jdbcType=VARCHAR},
+      payment_status = #{paymentStatus,jdbcType=VARCHAR},
+      callback_content = #{callbackContent,jdbcType=TIMESTAMP},
+      subject = #{subject,jdbcType=VARCHAR},
+      create_time = #{createTime,jdbcType=TIMESTAMP},
+      update_time = #{updateTime,jdbcType=TIMESTAMP},
+      is_delete = #{isDelete,jdbcType=BIGINT}
+    where Id = #{id,jdbcType=BIGINT}
+  </update>
+</mapper>

@@ -1,0 +1,276 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.javaliao.basic.mapper.TbCustomerServiceEmployeeMapper">
+  <resultMap id="BaseResultMap" type="com.javaliao.basic.model.TbCustomerServiceEmployee">
+    <id column="Id" jdbcType="BIGINT" property="id" />
+    <result column="customer_service_name" jdbcType="VARCHAR" property="customerServiceName" />
+    <result column="customer_service_phone" jdbcType="VARCHAR" property="customerServicePhone" />
+    <result column="customer_service_wechar" jdbcType="VARCHAR" property="customerServiceWechar" />
+    <result column="customer_service_QQ" jdbcType="VARCHAR" property="customerServiceQq" />
+    <result column="customer_service_type" jdbcType="VARCHAR" property="customerServiceType" />
+    <result column="is_delete" jdbcType="BIGINT" property="isDelete" />
+    <result column="create_time" jdbcType="TIMESTAMP" property="createTime" />
+    <result column="update_time" jdbcType="TIMESTAMP" property="updateTime" />
+  </resultMap>
+  <sql id="Example_Where_Clause">
+    <where>
+      <foreach collection="oredCriteria" item="criteria" separator="or">
+        <if test="criteria.valid">
+          <trim prefix="(" prefixOverrides="and" suffix=")">
+            <foreach collection="criteria.criteria" item="criterion">
+              <choose>
+                <when test="criterion.noValue">
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue">
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue">
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue">
+                  and ${criterion.condition}
+                  <foreach close=")" collection="criterion.value" item="listItem" open="(" separator=",">
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Update_By_Example_Where_Clause">
+    <where>
+      <foreach collection="example.oredCriteria" item="criteria" separator="or">
+        <if test="criteria.valid">
+          <trim prefix="(" prefixOverrides="and" suffix=")">
+            <foreach collection="criteria.criteria" item="criterion">
+              <choose>
+                <when test="criterion.noValue">
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue">
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue">
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue">
+                  and ${criterion.condition}
+                  <foreach close=")" collection="criterion.value" item="listItem" open="(" separator=",">
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Base_Column_List">
+    Id, customer_service_name, customer_service_phone, customer_service_wechar, customer_service_QQ, 
+    customer_service_type, is_delete, create_time, update_time
+  </sql>
+  <select id="selectByExample" parameterType="com.javaliao.basic.model.TbCustomerServiceEmployeeExample" resultMap="BaseResultMap">
+    select
+    <if test="distinct">
+      distinct
+    </if>
+    <include refid="Base_Column_List" />
+    from tb_customer_service_employee
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null">
+      order by ${orderByClause}
+    </if>
+  </select>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Long" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from tb_customer_service_employee
+    where Id = #{id,jdbcType=BIGINT}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Long">
+    delete from tb_customer_service_employee
+    where Id = #{id,jdbcType=BIGINT}
+  </delete>
+  <delete id="deleteByExample" parameterType="com.javaliao.basic.model.TbCustomerServiceEmployeeExample">
+    delete from tb_customer_service_employee
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+  </delete>
+  <insert id="insert" parameterType="com.javaliao.basic.model.TbCustomerServiceEmployee">
+    <selectKey keyProperty="id" order="AFTER" resultType="java.lang.Long">
+      SELECT LAST_INSERT_ID()
+    </selectKey>
+    insert into tb_customer_service_employee (customer_service_name, customer_service_phone, 
+      customer_service_wechar, customer_service_QQ, 
+      customer_service_type, is_delete, create_time, 
+      update_time)
+    values (#{customerServiceName,jdbcType=VARCHAR}, #{customerServicePhone,jdbcType=VARCHAR}, 
+      #{customerServiceWechar,jdbcType=VARCHAR}, #{customerServiceQq,jdbcType=VARCHAR}, 
+      #{customerServiceType,jdbcType=VARCHAR}, #{isDelete,jdbcType=BIGINT}, #{createTime,jdbcType=TIMESTAMP}, 
+      #{updateTime,jdbcType=TIMESTAMP})
+  </insert>
+  <insert id="insertSelective" parameterType="com.javaliao.basic.model.TbCustomerServiceEmployee">
+    <selectKey keyProperty="id" order="AFTER" resultType="java.lang.Long">
+      SELECT LAST_INSERT_ID()
+    </selectKey>
+    insert into tb_customer_service_employee
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="customerServiceName != null">
+        customer_service_name,
+      </if>
+      <if test="customerServicePhone != null">
+        customer_service_phone,
+      </if>
+      <if test="customerServiceWechar != null">
+        customer_service_wechar,
+      </if>
+      <if test="customerServiceQq != null">
+        customer_service_QQ,
+      </if>
+      <if test="customerServiceType != null">
+        customer_service_type,
+      </if>
+      <if test="isDelete != null">
+        is_delete,
+      </if>
+      <if test="createTime != null">
+        create_time,
+      </if>
+      <if test="updateTime != null">
+        update_time,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="customerServiceName != null">
+        #{customerServiceName,jdbcType=VARCHAR},
+      </if>
+      <if test="customerServicePhone != null">
+        #{customerServicePhone,jdbcType=VARCHAR},
+      </if>
+      <if test="customerServiceWechar != null">
+        #{customerServiceWechar,jdbcType=VARCHAR},
+      </if>
+      <if test="customerServiceQq != null">
+        #{customerServiceQq,jdbcType=VARCHAR},
+      </if>
+      <if test="customerServiceType != null">
+        #{customerServiceType,jdbcType=VARCHAR},
+      </if>
+      <if test="isDelete != null">
+        #{isDelete,jdbcType=BIGINT},
+      </if>
+      <if test="createTime != null">
+        #{createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updateTime != null">
+        #{updateTime,jdbcType=TIMESTAMP},
+      </if>
+    </trim>
+  </insert>
+  <select id="countByExample" parameterType="com.javaliao.basic.model.TbCustomerServiceEmployeeExample" resultType="java.lang.Integer">
+    select count(*) from tb_customer_service_employee
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+  </select>
+  <update id="updateByExampleSelective" parameterType="map">
+    update tb_customer_service_employee
+    <set>
+      <if test="record.id != null">
+        Id = #{record.id,jdbcType=BIGINT},
+      </if>
+      <if test="record.customerServiceName != null">
+        customer_service_name = #{record.customerServiceName,jdbcType=VARCHAR},
+      </if>
+      <if test="record.customerServicePhone != null">
+        customer_service_phone = #{record.customerServicePhone,jdbcType=VARCHAR},
+      </if>
+      <if test="record.customerServiceWechar != null">
+        customer_service_wechar = #{record.customerServiceWechar,jdbcType=VARCHAR},
+      </if>
+      <if test="record.customerServiceQq != null">
+        customer_service_QQ = #{record.customerServiceQq,jdbcType=VARCHAR},
+      </if>
+      <if test="record.customerServiceType != null">
+        customer_service_type = #{record.customerServiceType,jdbcType=VARCHAR},
+      </if>
+      <if test="record.isDelete != null">
+        is_delete = #{record.isDelete,jdbcType=BIGINT},
+      </if>
+      <if test="record.createTime != null">
+        create_time = #{record.createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="record.updateTime != null">
+        update_time = #{record.updateTime,jdbcType=TIMESTAMP},
+      </if>
+    </set>
+    <if test="_parameter != null">
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByExample" parameterType="map">
+    update tb_customer_service_employee
+    set Id = #{record.id,jdbcType=BIGINT},
+      customer_service_name = #{record.customerServiceName,jdbcType=VARCHAR},
+      customer_service_phone = #{record.customerServicePhone,jdbcType=VARCHAR},
+      customer_service_wechar = #{record.customerServiceWechar,jdbcType=VARCHAR},
+      customer_service_QQ = #{record.customerServiceQq,jdbcType=VARCHAR},
+      customer_service_type = #{record.customerServiceType,jdbcType=VARCHAR},
+      is_delete = #{record.isDelete,jdbcType=BIGINT},
+      create_time = #{record.createTime,jdbcType=TIMESTAMP},
+      update_time = #{record.updateTime,jdbcType=TIMESTAMP}
+    <if test="_parameter != null">
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByPrimaryKeySelective" parameterType="com.javaliao.basic.model.TbCustomerServiceEmployee">
+    update tb_customer_service_employee
+    <set>
+      <if test="customerServiceName != null">
+        customer_service_name = #{customerServiceName,jdbcType=VARCHAR},
+      </if>
+      <if test="customerServicePhone != null">
+        customer_service_phone = #{customerServicePhone,jdbcType=VARCHAR},
+      </if>
+      <if test="customerServiceWechar != null">
+        customer_service_wechar = #{customerServiceWechar,jdbcType=VARCHAR},
+      </if>
+      <if test="customerServiceQq != null">
+        customer_service_QQ = #{customerServiceQq,jdbcType=VARCHAR},
+      </if>
+      <if test="customerServiceType != null">
+        customer_service_type = #{customerServiceType,jdbcType=VARCHAR},
+      </if>
+      <if test="isDelete != null">
+        is_delete = #{isDelete,jdbcType=BIGINT},
+      </if>
+      <if test="createTime != null">
+        create_time = #{createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updateTime != null">
+        update_time = #{updateTime,jdbcType=TIMESTAMP},
+      </if>
+    </set>
+    where Id = #{id,jdbcType=BIGINT}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.javaliao.basic.model.TbCustomerServiceEmployee">
+    update tb_customer_service_employee
+    set customer_service_name = #{customerServiceName,jdbcType=VARCHAR},
+      customer_service_phone = #{customerServicePhone,jdbcType=VARCHAR},
+      customer_service_wechar = #{customerServiceWechar,jdbcType=VARCHAR},
+      customer_service_QQ = #{customerServiceQq,jdbcType=VARCHAR},
+      customer_service_type = #{customerServiceType,jdbcType=VARCHAR},
+      is_delete = #{isDelete,jdbcType=BIGINT},
+      create_time = #{createTime,jdbcType=TIMESTAMP},
+      update_time = #{updateTime,jdbcType=TIMESTAMP}
+    where Id = #{id,jdbcType=BIGINT}
+  </update>
+</mapper>

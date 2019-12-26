@@ -1,4 +1,4 @@
-#分布式电商总后台
+## backstage分布式电商总后台技术选型
 
 ###使用freemark作为模板引擎，先简单练练手，主要是网站前台后期要做seo推广
 后台首页：http://localhost:8085/jumpController/
@@ -26,7 +26,6 @@ druid监控地址：http://localhost:8085/druid/login.html。
 ###使用Hadoop的HDFS作为分布式文件系统，实现图片存储
 
 ###使用log4j作为日志文件,我配置的日志文件路径是E:\Project\PersonalProject\DistributedProject\Log\spring.log
-
 
 ##项目部署
 将jar上传到服务器的usr/local/apache-tomcat/webapps下

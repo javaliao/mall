@@ -1,0 +1,639 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.javaliao.basic.mapper.TbUserMapper">
+  <resultMap id="BaseResultMap" type="com.javaliao.basic.model.TbUser">
+    <id column="Id" jdbcType="BIGINT" property="id" />
+    <result column="user_name" jdbcType="VARCHAR" property="userName" />
+    <result column="user_password" jdbcType="VARCHAR" property="userPassword" />
+    <result column="user_nick_name" jdbcType="VARCHAR" property="userNickName" />
+    <result column="user_phone" jdbcType="VARCHAR" property="userPhone" />
+    <result column="user_email" jdbcType="VARCHAR" property="userEmail" />
+    <result column="user_rank" jdbcType="VARCHAR" property="userRank" />
+    <result column="user_accumulate_points" jdbcType="VARCHAR" property="userAccumulatePoints" />
+    <result column="user_gender" jdbcType="VARCHAR" property="userGender" />
+    <result column="user_icon" jdbcType="VARCHAR" property="userIcon" />
+    <result column="user_real_name" jdbcType="VARCHAR" property="userRealName" />
+    <result column="user_idcard" jdbcType="VARCHAR" property="userIdcard" />
+    <result column="secret_protection_problem" jdbcType="VARCHAR" property="secretProtectionProblem" />
+    <result column="secret_protection_answer" jdbcType="VARCHAR" property="secretProtectionAnswer" />
+    <result column="account_status" jdbcType="VARCHAR" property="accountStatus" />
+    <result column="user_type" jdbcType="VARCHAR" property="userType" />
+    <result column="positive_img" jdbcType="VARCHAR" property="positiveImg" />
+    <result column="opposite_img" jdbcType="VARCHAR" property="oppositeImg" />
+    <result column="occupation" jdbcType="VARCHAR" property="occupation" />
+    <result column="pay_password" jdbcType="VARCHAR" property="payPassword" />
+    <result column="is_certification" jdbcType="VARCHAR" property="isCertification" />
+    <result column="qq_open_id" jdbcType="VARCHAR" property="qqOpenId" />
+    <result column="weixin_open_id" jdbcType="VARCHAR" property="weixinOpenId" />
+    <result column="weixin_lite_open_id" jdbcType="VARCHAR" property="weixinLiteOpenId" />
+    <result column="weixin_app_open_id" jdbcType="VARCHAR" property="weixinAppOpenId" />
+    <result column="alipay_app_open_id" jdbcType="VARCHAR" property="alipayAppOpenId" />
+    <result column="weibo_open_id" jdbcType="VARCHAR" property="weiboOpenId" />
+    <result column="user_birthday" jdbcType="TIMESTAMP" property="userBirthday" />
+    <result column="account_create_time" jdbcType="TIMESTAMP" property="accountCreateTime" />
+    <result column="create_time" jdbcType="TIMESTAMP" property="createTime" />
+    <result column="update_time" jdbcType="TIMESTAMP" property="updateTime" />
+    <result column="is_delete" jdbcType="BIGINT" property="isDelete" />
+  </resultMap>
+  <sql id="Example_Where_Clause">
+    <where>
+      <foreach collection="oredCriteria" item="criteria" separator="or">
+        <if test="criteria.valid">
+          <trim prefix="(" prefixOverrides="and" suffix=")">
+            <foreach collection="criteria.criteria" item="criterion">
+              <choose>
+                <when test="criterion.noValue">
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue">
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue">
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue">
+                  and ${criterion.condition}
+                  <foreach close=")" collection="criterion.value" item="listItem" open="(" separator=",">
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Update_By_Example_Where_Clause">
+    <where>
+      <foreach collection="example.oredCriteria" item="criteria" separator="or">
+        <if test="criteria.valid">
+          <trim prefix="(" prefixOverrides="and" suffix=")">
+            <foreach collection="criteria.criteria" item="criterion">
+              <choose>
+                <when test="criterion.noValue">
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue">
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue">
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue">
+                  and ${criterion.condition}
+                  <foreach close=")" collection="criterion.value" item="listItem" open="(" separator=",">
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Base_Column_List">
+    Id, user_name, user_password, user_nick_name, user_phone, user_email, user_rank, 
+    user_accumulate_points, user_gender, user_icon, user_real_name, user_idcard, secret_protection_problem, 
+    secret_protection_answer, account_status, user_type, positive_img, opposite_img, 
+    occupation, pay_password, is_certification, qq_open_id, weixin_open_id, weixin_lite_open_id, 
+    weixin_app_open_id, alipay_app_open_id, weibo_open_id, user_birthday, account_create_time, 
+    create_time, update_time, is_delete
+  </sql>
+  <select id="selectByExample" parameterType="com.javaliao.basic.model.TbUserExample" resultMap="BaseResultMap">
+    select
+    <if test="distinct">
+      distinct
+    </if>
+    <include refid="Base_Column_List" />
+    from tb_user
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null">
+      order by ${orderByClause}
+    </if>
+  </select>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Long" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from tb_user
+    where Id = #{id,jdbcType=BIGINT}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Long">
+    delete from tb_user
+    where Id = #{id,jdbcType=BIGINT}
+  </delete>
+  <delete id="deleteByExample" parameterType="com.javaliao.basic.model.TbUserExample">
+    delete from tb_user
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+  </delete>
+  <insert id="insert" parameterType="com.javaliao.basic.model.TbUser">
+    <selectKey keyProperty="id" order="AFTER" resultType="java.lang.Long">
+      SELECT LAST_INSERT_ID()
+    </selectKey>
+    insert into tb_user (user_name, user_password, user_nick_name, 
+      user_phone, user_email, user_rank, 
+      user_accumulate_points, user_gender, user_icon, 
+      user_real_name, user_idcard, secret_protection_problem, 
+      secret_protection_answer, account_status, 
+      user_type, positive_img, opposite_img, 
+      occupation, pay_password, is_certification, 
+      qq_open_id, weixin_open_id, weixin_lite_open_id, 
+      weixin_app_open_id, alipay_app_open_id, weibo_open_id, 
+      user_birthday, account_create_time, create_time, 
+      update_time, is_delete)
+    values (#{userName,jdbcType=VARCHAR}, #{userPassword,jdbcType=VARCHAR}, #{userNickName,jdbcType=VARCHAR}, 
+      #{userPhone,jdbcType=VARCHAR}, #{userEmail,jdbcType=VARCHAR}, #{userRank,jdbcType=VARCHAR}, 
+      #{userAccumulatePoints,jdbcType=VARCHAR}, #{userGender,jdbcType=VARCHAR}, #{userIcon,jdbcType=VARCHAR}, 
+      #{userRealName,jdbcType=VARCHAR}, #{userIdcard,jdbcType=VARCHAR}, #{secretProtectionProblem,jdbcType=VARCHAR}, 
+      #{secretProtectionAnswer,jdbcType=VARCHAR}, #{accountStatus,jdbcType=VARCHAR}, 
+      #{userType,jdbcType=VARCHAR}, #{positiveImg,jdbcType=VARCHAR}, #{oppositeImg,jdbcType=VARCHAR}, 
+      #{occupation,jdbcType=VARCHAR}, #{payPassword,jdbcType=VARCHAR}, #{isCertification,jdbcType=VARCHAR}, 
+      #{qqOpenId,jdbcType=VARCHAR}, #{weixinOpenId,jdbcType=VARCHAR}, #{weixinLiteOpenId,jdbcType=VARCHAR}, 
+      #{weixinAppOpenId,jdbcType=VARCHAR}, #{alipayAppOpenId,jdbcType=VARCHAR}, #{weiboOpenId,jdbcType=VARCHAR}, 
+      #{userBirthday,jdbcType=TIMESTAMP}, #{accountCreateTime,jdbcType=TIMESTAMP}, #{createTime,jdbcType=TIMESTAMP}, 
+      #{updateTime,jdbcType=TIMESTAMP}, #{isDelete,jdbcType=BIGINT})
+  </insert>
+  <insert id="insertSelective" parameterType="com.javaliao.basic.model.TbUser">
+    <selectKey keyProperty="id" order="AFTER" resultType="java.lang.Long">
+      SELECT LAST_INSERT_ID()
+    </selectKey>
+    insert into tb_user
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="userName != null">
+        user_name,
+      </if>
+      <if test="userPassword != null">
+        user_password,
+      </if>
+      <if test="userNickName != null">
+        user_nick_name,
+      </if>
+      <if test="userPhone != null">
+        user_phone,
+      </if>
+      <if test="userEmail != null">
+        user_email,
+      </if>
+      <if test="userRank != null">
+        user_rank,
+      </if>
+      <if test="userAccumulatePoints != null">
+        user_accumulate_points,
+      </if>
+      <if test="userGender != null">
+        user_gender,
+      </if>
+      <if test="userIcon != null">
+        user_icon,
+      </if>
+      <if test="userRealName != null">
+        user_real_name,
+      </if>
+      <if test="userIdcard != null">
+        user_idcard,
+      </if>
+      <if test="secretProtectionProblem != null">
+        secret_protection_problem,
+      </if>
+      <if test="secretProtectionAnswer != null">
+        secret_protection_answer,
+      </if>
+      <if test="accountStatus != null">
+        account_status,
+      </if>
+      <if test="userType != null">
+        user_type,
+      </if>
+      <if test="positiveImg != null">
+        positive_img,
+      </if>
+      <if test="oppositeImg != null">
+        opposite_img,
+      </if>
+      <if test="occupation != null">
+        occupation,
+      </if>
+      <if test="payPassword != null">
+        pay_password,
+      </if>
+      <if test="isCertification != null">
+        is_certification,
+      </if>
+      <if test="qqOpenId != null">
+        qq_open_id,
+      </if>
+      <if test="weixinOpenId != null">
+        weixin_open_id,
+      </if>
+      <if test="weixinLiteOpenId != null">
+        weixin_lite_open_id,
+      </if>
+      <if test="weixinAppOpenId != null">
+        weixin_app_open_id,
+      </if>
+      <if test="alipayAppOpenId != null">
+        alipay_app_open_id,
+      </if>
+      <if test="weiboOpenId != null">
+        weibo_open_id,
+      </if>
+      <if test="userBirthday != null">
+        user_birthday,
+      </if>
+      <if test="accountCreateTime != null">
+        account_create_time,
+      </if>
+      <if test="createTime != null">
+        create_time,
+      </if>
+      <if test="updateTime != null">
+        update_time,
+      </if>
+      <if test="isDelete != null">
+        is_delete,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="userName != null">
+        #{userName,jdbcType=VARCHAR},
+      </if>
+      <if test="userPassword != null">
+        #{userPassword,jdbcType=VARCHAR},
+      </if>
+      <if test="userNickName != null">
+        #{userNickName,jdbcType=VARCHAR},
+      </if>
+      <if test="userPhone != null">
+        #{userPhone,jdbcType=VARCHAR},
+      </if>
+      <if test="userEmail != null">
+        #{userEmail,jdbcType=VARCHAR},
+      </if>
+      <if test="userRank != null">
+        #{userRank,jdbcType=VARCHAR},
+      </if>
+      <if test="userAccumulatePoints != null">
+        #{userAccumulatePoints,jdbcType=VARCHAR},
+      </if>
+      <if test="userGender != null">
+        #{userGender,jdbcType=VARCHAR},
+      </if>
+      <if test="userIcon != null">
+        #{userIcon,jdbcType=VARCHAR},
+      </if>
+      <if test="userRealName != null">
+        #{userRealName,jdbcType=VARCHAR},
+      </if>
+      <if test="userIdcard != null">
+        #{userIdcard,jdbcType=VARCHAR},
+      </if>
+      <if test="secretProtectionProblem != null">
+        #{secretProtectionProblem,jdbcType=VARCHAR},
+      </if>
+      <if test="secretProtectionAnswer != null">
+        #{secretProtectionAnswer,jdbcType=VARCHAR},
+      </if>
+      <if test="accountStatus != null">
+        #{accountStatus,jdbcType=VARCHAR},
+      </if>
+      <if test="userType != null">
+        #{userType,jdbcType=VARCHAR},
+      </if>
+      <if test="positiveImg != null">
+        #{positiveImg,jdbcType=VARCHAR},
+      </if>
+      <if test="oppositeImg != null">
+        #{oppositeImg,jdbcType=VARCHAR},
+      </if>
+      <if test="occupation != null">
+        #{occupation,jdbcType=VARCHAR},
+      </if>
+      <if test="payPassword != null">
+        #{payPassword,jdbcType=VARCHAR},
+      </if>
+      <if test="isCertification != null">
+        #{isCertification,jdbcType=VARCHAR},
+      </if>
+      <if test="qqOpenId != null">
+        #{qqOpenId,jdbcType=VARCHAR},
+      </if>
+      <if test="weixinOpenId != null">
+        #{weixinOpenId,jdbcType=VARCHAR},
+      </if>
+      <if test="weixinLiteOpenId != null">
+        #{weixinLiteOpenId,jdbcType=VARCHAR},
+      </if>
+      <if test="weixinAppOpenId != null">
+        #{weixinAppOpenId,jdbcType=VARCHAR},
+      </if>
+      <if test="alipayAppOpenId != null">
+        #{alipayAppOpenId,jdbcType=VARCHAR},
+      </if>
+      <if test="weiboOpenId != null">
+        #{weiboOpenId,jdbcType=VARCHAR},
+      </if>
+      <if test="userBirthday != null">
+        #{userBirthday,jdbcType=TIMESTAMP},
+      </if>
+      <if test="accountCreateTime != null">
+        #{accountCreateTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="createTime != null">
+        #{createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updateTime != null">
+        #{updateTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="isDelete != null">
+        #{isDelete,jdbcType=BIGINT},
+      </if>
+    </trim>
+  </insert>
+  <select id="countByExample" parameterType="com.javaliao.basic.model.TbUserExample" resultType="java.lang.Integer">
+    select count(*) from tb_user
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+  </select>
+  <update id="updateByExampleSelective" parameterType="map">
+    update tb_user
+    <set>
+      <if test="record.id != null">
+        Id = #{record.id,jdbcType=BIGINT},
+      </if>
+      <if test="record.userName != null">
+        user_name = #{record.userName,jdbcType=VARCHAR},
+      </if>
+      <if test="record.userPassword != null">
+        user_password = #{record.userPassword,jdbcType=VARCHAR},
+      </if>
+      <if test="record.userNickName != null">
+        user_nick_name = #{record.userNickName,jdbcType=VARCHAR},
+      </if>
+      <if test="record.userPhone != null">
+        user_phone = #{record.userPhone,jdbcType=VARCHAR},
+      </if>
+      <if test="record.userEmail != null">
+        user_email = #{record.userEmail,jdbcType=VARCHAR},
+      </if>
+      <if test="record.userRank != null">
+        user_rank = #{record.userRank,jdbcType=VARCHAR},
+      </if>
+      <if test="record.userAccumulatePoints != null">
+        user_accumulate_points = #{record.userAccumulatePoints,jdbcType=VARCHAR},
+      </if>
+      <if test="record.userGender != null">
+        user_gender = #{record.userGender,jdbcType=VARCHAR},
+      </if>
+      <if test="record.userIcon != null">
+        user_icon = #{record.userIcon,jdbcType=VARCHAR},
+      </if>
+      <if test="record.userRealName != null">
+        user_real_name = #{record.userRealName,jdbcType=VARCHAR},
+      </if>
+      <if test="record.userIdcard != null">
+        user_idcard = #{record.userIdcard,jdbcType=VARCHAR},
+      </if>
+      <if test="record.secretProtectionProblem != null">
+        secret_protection_problem = #{record.secretProtectionProblem,jdbcType=VARCHAR},
+      </if>
+      <if test="record.secretProtectionAnswer != null">
+        secret_protection_answer = #{record.secretProtectionAnswer,jdbcType=VARCHAR},
+      </if>
+      <if test="record.accountStatus != null">
+        account_status = #{record.accountStatus,jdbcType=VARCHAR},
+      </if>
+      <if test="record.userType != null">
+        user_type = #{record.userType,jdbcType=VARCHAR},
+      </if>
+      <if test="record.positiveImg != null">
+        positive_img = #{record.positiveImg,jdbcType=VARCHAR},
+      </if>
+      <if test="record.oppositeImg != null">
+        opposite_img = #{record.oppositeImg,jdbcType=VARCHAR},
+      </if>
+      <if test="record.occupation != null">
+        occupation = #{record.occupation,jdbcType=VARCHAR},
+      </if>
+      <if test="record.payPassword != null">
+        pay_password = #{record.payPassword,jdbcType=VARCHAR},
+      </if>
+      <if test="record.isCertification != null">
+        is_certification = #{record.isCertification,jdbcType=VARCHAR},
+      </if>
+      <if test="record.qqOpenId != null">
+        qq_open_id = #{record.qqOpenId,jdbcType=VARCHAR},
+      </if>
+      <if test="record.weixinOpenId != null">
+        weixin_open_id = #{record.weixinOpenId,jdbcType=VARCHAR},
+      </if>
+      <if test="record.weixinLiteOpenId != null">
+        weixin_lite_open_id = #{record.weixinLiteOpenId,jdbcType=VARCHAR},
+      </if>
+      <if test="record.weixinAppOpenId != null">
+        weixin_app_open_id = #{record.weixinAppOpenId,jdbcType=VARCHAR},
+      </if>
+      <if test="record.alipayAppOpenId != null">
+        alipay_app_open_id = #{record.alipayAppOpenId,jdbcType=VARCHAR},
+      </if>
+      <if test="record.weiboOpenId != null">
+        weibo_open_id = #{record.weiboOpenId,jdbcType=VARCHAR},
+      </if>
+      <if test="record.userBirthday != null">
+        user_birthday = #{record.userBirthday,jdbcType=TIMESTAMP},
+      </if>
+      <if test="record.accountCreateTime != null">
+        account_create_time = #{record.accountCreateTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="record.createTime != null">
+        create_time = #{record.createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="record.updateTime != null">
+        update_time = #{record.updateTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="record.isDelete != null">
+        is_delete = #{record.isDelete,jdbcType=BIGINT},
+      </if>
+    </set>
+    <if test="_parameter != null">
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByExample" parameterType="map">
+    update tb_user
+    set Id = #{record.id,jdbcType=BIGINT},
+      user_name = #{record.userName,jdbcType=VARCHAR},
+      user_password = #{record.userPassword,jdbcType=VARCHAR},
+      user_nick_name = #{record.userNickName,jdbcType=VARCHAR},
+      user_phone = #{record.userPhone,jdbcType=VARCHAR},
+      user_email = #{record.userEmail,jdbcType=VARCHAR},
+      user_rank = #{record.userRank,jdbcType=VARCHAR},
+      user_accumulate_points = #{record.userAccumulatePoints,jdbcType=VARCHAR},
+      user_gender = #{record.userGender,jdbcType=VARCHAR},
+      user_icon = #{record.userIcon,jdbcType=VARCHAR},
+      user_real_name = #{record.userRealName,jdbcType=VARCHAR},
+      user_idcard = #{record.userIdcard,jdbcType=VARCHAR},
+      secret_protection_problem = #{record.secretProtectionProblem,jdbcType=VARCHAR},
+      secret_protection_answer = #{record.secretProtectionAnswer,jdbcType=VARCHAR},
+      account_status = #{record.accountStatus,jdbcType=VARCHAR},
+      user_type = #{record.userType,jdbcType=VARCHAR},
+      positive_img = #{record.positiveImg,jdbcType=VARCHAR},
+      opposite_img = #{record.oppositeImg,jdbcType=VARCHAR},
+      occupation = #{record.occupation,jdbcType=VARCHAR},
+      pay_password = #{record.payPassword,jdbcType=VARCHAR},
+      is_certification = #{record.isCertification,jdbcType=VARCHAR},
+      qq_open_id = #{record.qqOpenId,jdbcType=VARCHAR},
+      weixin_open_id = #{record.weixinOpenId,jdbcType=VARCHAR},
+      weixin_lite_open_id = #{record.weixinLiteOpenId,jdbcType=VARCHAR},
+      weixin_app_open_id = #{record.weixinAppOpenId,jdbcType=VARCHAR},
+      alipay_app_open_id = #{record.alipayAppOpenId,jdbcType=VARCHAR},
+      weibo_open_id = #{record.weiboOpenId,jdbcType=VARCHAR},
+      user_birthday = #{record.userBirthday,jdbcType=TIMESTAMP},
+      account_create_time = #{record.accountCreateTime,jdbcType=TIMESTAMP},
+      create_time = #{record.createTime,jdbcType=TIMESTAMP},
+      update_time = #{record.updateTime,jdbcType=TIMESTAMP},
+      is_delete = #{record.isDelete,jdbcType=BIGINT}
+    <if test="_parameter != null">
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByPrimaryKeySelective" parameterType="com.javaliao.basic.model.TbUser">
+    update tb_user
+    <set>
+      <if test="userName != null">
+        user_name = #{userName,jdbcType=VARCHAR},
+      </if>
+      <if test="userPassword != null">
+        user_password = #{userPassword,jdbcType=VARCHAR},
+      </if>
+      <if test="userNickName != null">
+        user_nick_name = #{userNickName,jdbcType=VARCHAR},
+      </if>
+      <if test="userPhone != null">
+        user_phone = #{userPhone,jdbcType=VARCHAR},
+      </if>
+      <if test="userEmail != null">
+        user_email = #{userEmail,jdbcType=VARCHAR},
+      </if>
+      <if test="userRank != null">
+        user_rank = #{userRank,jdbcType=VARCHAR},
+      </if>
+      <if test="userAccumulatePoints != null">
+        user_accumulate_points = #{userAccumulatePoints,jdbcType=VARCHAR},
+      </if>
+      <if test="userGender != null">
+        user_gender = #{userGender,jdbcType=VARCHAR},
+      </if>
+      <if test="userIcon != null">
+        user_icon = #{userIcon,jdbcType=VARCHAR},
+      </if>
+      <if test="userRealName != null">
+        user_real_name = #{userRealName,jdbcType=VARCHAR},
+      </if>
+      <if test="userIdcard != null">
+        user_idcard = #{userIdcard,jdbcType=VARCHAR},
+      </if>
+      <if test="secretProtectionProblem != null">
+        secret_protection_problem = #{secretProtectionProblem,jdbcType=VARCHAR},
+      </if>
+      <if test="secretProtectionAnswer != null">
+        secret_protection_answer = #{secretProtectionAnswer,jdbcType=VARCHAR},
+      </if>
+      <if test="accountStatus != null">
+        account_status = #{accountStatus,jdbcType=VARCHAR},
+      </if>
+      <if test="userType != null">
+        user_type = #{userType,jdbcType=VARCHAR},
+      </if>
+      <if test="positiveImg != null">
+        positive_img = #{positiveImg,jdbcType=VARCHAR},
+      </if>
+      <if test="oppositeImg != null">
+        opposite_img = #{oppositeImg,jdbcType=VARCHAR},
+      </if>
+      <if test="occupation != null">
+        occupation = #{occupation,jdbcType=VARCHAR},
+      </if>
+      <if test="payPassword != null">
+        pay_password = #{payPassword,jdbcType=VARCHAR},
+      </if>
+      <if test="isCertification != null">
+        is_certification = #{isCertification,jdbcType=VARCHAR},
+      </if>
+      <if test="qqOpenId != null">
+        qq_open_id = #{qqOpenId,jdbcType=VARCHAR},
+      </if>
+      <if test="weixinOpenId != null">
+        weixin_open_id = #{weixinOpenId,jdbcType=VARCHAR},
+      </if>
+      <if test="weixinLiteOpenId != null">
+        weixin_lite_open_id = #{weixinLiteOpenId,jdbcType=VARCHAR},
+      </if>
+      <if test="weixinAppOpenId != null">
+        weixin_app_open_id = #{weixinAppOpenId,jdbcType=VARCHAR},
+      </if>
+      <if test="alipayAppOpenId != null">
+        alipay_app_open_id = #{alipayAppOpenId,jdbcType=VARCHAR},
+      </if>
+      <if test="weiboOpenId != null">
+        weibo_open_id = #{weiboOpenId,jdbcType=VARCHAR},
+      </if>
+      <if test="userBirthday != null">
+        user_birthday = #{userBirthday,jdbcType=TIMESTAMP},
+      </if>
+      <if test="accountCreateTime != null">
+        account_create_time = #{accountCreateTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="createTime != null">
+        create_time = #{createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updateTime != null">
+        update_time = #{updateTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="isDelete != null">
+        is_delete = #{isDelete,jdbcType=BIGINT},
+      </if>
+    </set>
+    where Id = #{id,jdbcType=BIGINT}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.javaliao.basic.model.TbUser">
+    update tb_user
+    set user_name = #{userName,jdbcType=VARCHAR},
+      user_password = #{userPassword,jdbcType=VARCHAR},
+      user_nick_name = #{userNickName,jdbcType=VARCHAR},
+      user_phone = #{userPhone,jdbcType=VARCHAR},
+      user_email = #{userEmail,jdbcType=VARCHAR},
+      user_rank = #{userRank,jdbcType=VARCHAR},
+      user_accumulate_points = #{userAccumulatePoints,jdbcType=VARCHAR},
+      user_gender = #{userGender,jdbcType=VARCHAR},
+      user_icon = #{userIcon,jdbcType=VARCHAR},
+      user_real_name = #{userRealName,jdbcType=VARCHAR},
+      user_idcard = #{userIdcard,jdbcType=VARCHAR},
+      secret_protection_problem = #{secretProtectionProblem,jdbcType=VARCHAR},
+      secret_protection_answer = #{secretProtectionAnswer,jdbcType=VARCHAR},
+      account_status = #{accountStatus,jdbcType=VARCHAR},
+      user_type = #{userType,jdbcType=VARCHAR},
+      positive_img = #{positiveImg,jdbcType=VARCHAR},
+      opposite_img = #{oppositeImg,jdbcType=VARCHAR},
+      occupation = #{occupation,jdbcType=VARCHAR},
+      pay_password = #{payPassword,jdbcType=VARCHAR},
+      is_certification = #{isCertification,jdbcType=VARCHAR},
+      qq_open_id = #{qqOpenId,jdbcType=VARCHAR},
+      weixin_open_id = #{weixinOpenId,jdbcType=VARCHAR},
+      weixin_lite_open_id = #{weixinLiteOpenId,jdbcType=VARCHAR},
+      weixin_app_open_id = #{weixinAppOpenId,jdbcType=VARCHAR},
+      alipay_app_open_id = #{alipayAppOpenId,jdbcType=VARCHAR},
+      weibo_open_id = #{weiboOpenId,jdbcType=VARCHAR},
+      user_birthday = #{userBirthday,jdbcType=TIMESTAMP},
+      account_create_time = #{accountCreateTime,jdbcType=TIMESTAMP},
+      create_time = #{createTime,jdbcType=TIMESTAMP},
+      update_time = #{updateTime,jdbcType=TIMESTAMP},
+      is_delete = #{isDelete,jdbcType=BIGINT}
+    where Id = #{id,jdbcType=BIGINT}
+  </update>
+</mapper>

@@ -1,6 +1,5 @@
 package com.javaliao.home.service;
 
-import com.javaliao.home.component.ServiceHystric;
 import org.springframework.cloud.netflix.feign.FeignClient;
 
 /**
@@ -11,7 +10,7 @@ import org.springframework.cloud.netflix.feign.FeignClient;
  * @Version 1.0
  **/
 
-@FeignClient(value = "home-service",fallback = ServiceHystric.class)
+@FeignClient(value = "home-service")
 public interface HomeService {
 
     void getHomeInfo();

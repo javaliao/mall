@@ -1,0 +1,306 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.javaliao.basic.mapper.TbLogVisitMapper">
+  <resultMap id="BaseResultMap" type="com.javaliao.basic.model.TbLogVisit">
+    <id column="Id" jdbcType="BIGINT" property="id" />
+    <result column="ip_address" jdbcType="VARCHAR" property="ipAddress" />
+    <result column="host_name" jdbcType="VARCHAR" property="hostName" />
+    <result column="channel" jdbcType="VARCHAR" property="channel" />
+    <result column="service_description" jdbcType="VARCHAR" property="serviceDescription" />
+    <result column="visit_api" jdbcType="VARCHAR" property="visitApi" />
+    <result column="visit_method" jdbcType="VARCHAR" property="visitMethod" />
+    <result column="visit_url" jdbcType="VARCHAR" property="visitUrl" />
+    <result column="create_time" jdbcType="TIMESTAMP" property="createTime" />
+    <result column="update_time" jdbcType="TIMESTAMP" property="updateTime" />
+    <result column="is_delete" jdbcType="BIGINT" property="isDelete" />
+  </resultMap>
+  <sql id="Example_Where_Clause">
+    <where>
+      <foreach collection="oredCriteria" item="criteria" separator="or">
+        <if test="criteria.valid">
+          <trim prefix="(" prefixOverrides="and" suffix=")">
+            <foreach collection="criteria.criteria" item="criterion">
+              <choose>
+                <when test="criterion.noValue">
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue">
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue">
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue">
+                  and ${criterion.condition}
+                  <foreach close=")" collection="criterion.value" item="listItem" open="(" separator=",">
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Update_By_Example_Where_Clause">
+    <where>
+      <foreach collection="example.oredCriteria" item="criteria" separator="or">
+        <if test="criteria.valid">
+          <trim prefix="(" prefixOverrides="and" suffix=")">
+            <foreach collection="criteria.criteria" item="criterion">
+              <choose>
+                <when test="criterion.noValue">
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue">
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue">
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue">
+                  and ${criterion.condition}
+                  <foreach close=")" collection="criterion.value" item="listItem" open="(" separator=",">
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Base_Column_List">
+    Id, ip_address, host_name, channel, service_description, visit_api, visit_method, 
+    visit_url, create_time, update_time, is_delete
+  </sql>
+  <select id="selectByExample" parameterType="com.javaliao.basic.model.TbLogVisitExample" resultMap="BaseResultMap">
+    select
+    <if test="distinct">
+      distinct
+    </if>
+    <include refid="Base_Column_List" />
+    from tb_log_visit
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null">
+      order by ${orderByClause}
+    </if>
+  </select>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Long" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from tb_log_visit
+    where Id = #{id,jdbcType=BIGINT}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Long">
+    delete from tb_log_visit
+    where Id = #{id,jdbcType=BIGINT}
+  </delete>
+  <delete id="deleteByExample" parameterType="com.javaliao.basic.model.TbLogVisitExample">
+    delete from tb_log_visit
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+  </delete>
+  <insert id="insert" parameterType="com.javaliao.basic.model.TbLogVisit">
+    <selectKey keyProperty="id" order="AFTER" resultType="java.lang.Long">
+      SELECT LAST_INSERT_ID()
+    </selectKey>
+    insert into tb_log_visit (ip_address, host_name, channel, 
+      service_description, visit_api, visit_method, 
+      visit_url, create_time, update_time, 
+      is_delete)
+    values (#{ipAddress,jdbcType=VARCHAR}, #{hostName,jdbcType=VARCHAR}, #{channel,jdbcType=VARCHAR}, 
+      #{serviceDescription,jdbcType=VARCHAR}, #{visitApi,jdbcType=VARCHAR}, #{visitMethod,jdbcType=VARCHAR}, 
+      #{visitUrl,jdbcType=VARCHAR}, #{createTime,jdbcType=TIMESTAMP}, #{updateTime,jdbcType=TIMESTAMP}, 
+      #{isDelete,jdbcType=BIGINT})
+  </insert>
+  <insert id="insertSelective" parameterType="com.javaliao.basic.model.TbLogVisit">
+    <selectKey keyProperty="id" order="AFTER" resultType="java.lang.Long">
+      SELECT LAST_INSERT_ID()
+    </selectKey>
+    insert into tb_log_visit
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="ipAddress != null">
+        ip_address,
+      </if>
+      <if test="hostName != null">
+        host_name,
+      </if>
+      <if test="channel != null">
+        channel,
+      </if>
+      <if test="serviceDescription != null">
+        service_description,
+      </if>
+      <if test="visitApi != null">
+        visit_api,
+      </if>
+      <if test="visitMethod != null">
+        visit_method,
+      </if>
+      <if test="visitUrl != null">
+        visit_url,
+      </if>
+      <if test="createTime != null">
+        create_time,
+      </if>
+      <if test="updateTime != null">
+        update_time,
+      </if>
+      <if test="isDelete != null">
+        is_delete,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="ipAddress != null">
+        #{ipAddress,jdbcType=VARCHAR},
+      </if>
+      <if test="hostName != null">
+        #{hostName,jdbcType=VARCHAR},
+      </if>
+      <if test="channel != null">
+        #{channel,jdbcType=VARCHAR},
+      </if>
+      <if test="serviceDescription != null">
+        #{serviceDescription,jdbcType=VARCHAR},
+      </if>
+      <if test="visitApi != null">
+        #{visitApi,jdbcType=VARCHAR},
+      </if>
+      <if test="visitMethod != null">
+        #{visitMethod,jdbcType=VARCHAR},
+      </if>
+      <if test="visitUrl != null">
+        #{visitUrl,jdbcType=VARCHAR},
+      </if>
+      <if test="createTime != null">
+        #{createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updateTime != null">
+        #{updateTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="isDelete != null">
+        #{isDelete,jdbcType=BIGINT},
+      </if>
+    </trim>
+  </insert>
+  <select id="countByExample" parameterType="com.javaliao.basic.model.TbLogVisitExample" resultType="java.lang.Integer">
+    select count(*) from tb_log_visit
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+  </select>
+  <update id="updateByExampleSelective" parameterType="map">
+    update tb_log_visit
+    <set>
+      <if test="record.id != null">
+        Id = #{record.id,jdbcType=BIGINT},
+      </if>
+      <if test="record.ipAddress != null">
+        ip_address = #{record.ipAddress,jdbcType=VARCHAR},
+      </if>
+      <if test="record.hostName != null">
+        host_name = #{record.hostName,jdbcType=VARCHAR},
+      </if>
+      <if test="record.channel != null">
+        channel = #{record.channel,jdbcType=VARCHAR},
+      </if>
+      <if test="record.serviceDescription != null">
+        service_description = #{record.serviceDescription,jdbcType=VARCHAR},
+      </if>
+      <if test="record.visitApi != null">
+        visit_api = #{record.visitApi,jdbcType=VARCHAR},
+      </if>
+      <if test="record.visitMethod != null">
+        visit_method = #{record.visitMethod,jdbcType=VARCHAR},
+      </if>
+      <if test="record.visitUrl != null">
+        visit_url = #{record.visitUrl,jdbcType=VARCHAR},
+      </if>
+      <if test="record.createTime != null">
+        create_time = #{record.createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="record.updateTime != null">
+        update_time = #{record.updateTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="record.isDelete != null">
+        is_delete = #{record.isDelete,jdbcType=BIGINT},
+      </if>
+    </set>
+    <if test="_parameter != null">
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByExample" parameterType="map">
+    update tb_log_visit
+    set Id = #{record.id,jdbcType=BIGINT},
+      ip_address = #{record.ipAddress,jdbcType=VARCHAR},
+      host_name = #{record.hostName,jdbcType=VARCHAR},
+      channel = #{record.channel,jdbcType=VARCHAR},
+      service_description = #{record.serviceDescription,jdbcType=VARCHAR},
+      visit_api = #{record.visitApi,jdbcType=VARCHAR},
+      visit_method = #{record.visitMethod,jdbcType=VARCHAR},
+      visit_url = #{record.visitUrl,jdbcType=VARCHAR},
+      create_time = #{record.createTime,jdbcType=TIMESTAMP},
+      update_time = #{record.updateTime,jdbcType=TIMESTAMP},
+      is_delete = #{record.isDelete,jdbcType=BIGINT}
+    <if test="_parameter != null">
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByPrimaryKeySelective" parameterType="com.javaliao.basic.model.TbLogVisit">
+    update tb_log_visit
+    <set>
+      <if test="ipAddress != null">
+        ip_address = #{ipAddress,jdbcType=VARCHAR},
+      </if>
+      <if test="hostName != null">
+        host_name = #{hostName,jdbcType=VARCHAR},
+      </if>
+      <if test="channel != null">
+        channel = #{channel,jdbcType=VARCHAR},
+      </if>
+      <if test="serviceDescription != null">
+        service_description = #{serviceDescription,jdbcType=VARCHAR},
+      </if>
+      <if test="visitApi != null">
+        visit_api = #{visitApi,jdbcType=VARCHAR},
+      </if>
+      <if test="visitMethod != null">
+        visit_method = #{visitMethod,jdbcType=VARCHAR},
+      </if>
+      <if test="visitUrl != null">
+        visit_url = #{visitUrl,jdbcType=VARCHAR},
+      </if>
+      <if test="createTime != null">
+        create_time = #{createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updateTime != null">
+        update_time = #{updateTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="isDelete != null">
+        is_delete = #{isDelete,jdbcType=BIGINT},
+      </if>
+    </set>
+    where Id = #{id,jdbcType=BIGINT}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.javaliao.basic.model.TbLogVisit">
+    update tb_log_visit
+    set ip_address = #{ipAddress,jdbcType=VARCHAR},
+      host_name = #{hostName,jdbcType=VARCHAR},
+      channel = #{channel,jdbcType=VARCHAR},
+      service_description = #{serviceDescription,jdbcType=VARCHAR},
+      visit_api = #{visitApi,jdbcType=VARCHAR},
+      visit_method = #{visitMethod,jdbcType=VARCHAR},
+      visit_url = #{visitUrl,jdbcType=VARCHAR},
+      create_time = #{createTime,jdbcType=TIMESTAMP},
+      update_time = #{updateTime,jdbcType=TIMESTAMP},
+      is_delete = #{isDelete,jdbcType=BIGINT}
+    where Id = #{id,jdbcType=BIGINT}
+  </update>
+</mapper>
