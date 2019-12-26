@@ -1,4 +1,4 @@
-package com.javaliao.basic.config;
+package com.javaliao.homeservice.config;
 
 import org.mybatis.spring.annotation.MapperScan;
 import org.springframework.context.annotation.Configuration;

@@ -25,7 +25,7 @@ public class HomeServiceImpl implements HomeService {
         CommonResult productCategory = homeFeign.getProductCategory();
 
         //获取专题
-
+        System.out.println(productCategory);
         //获取栏目
 
         //获取广告
