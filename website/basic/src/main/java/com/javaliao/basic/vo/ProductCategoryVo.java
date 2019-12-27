@@ -1,7 +1,6 @@
-package com.javaliao.homeservice.vo;
+package com.javaliao.basic.vo;
 
 import com.javaliao.basic.model.TbProductCategory;
-
 import java.util.List;
 
 /**

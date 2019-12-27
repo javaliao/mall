@@ -24,12 +24,12 @@
 			<artifactId>basic</artifactId>
 			<version>1.0-SNAPSHOT</version>
 		</dependency>
-<!--	Web的起步依赖spring-boot-starter-web-->
+		<!--	Web的起步依赖spring-boot-starter-web-->
 		<dependency>
 			<groupId>org.springframework.boot</groupId>
 			<artifactId>spring-boot-starter-web</artifactId>
 		</dependency>
-<!--	Eureka的起步依赖spring-cloud-starter-netflix-eureka-client-->
+		<!--	Eureka的起步依赖spring-cloud-starter-netflix-eureka-client-->
 		<dependency>
 			<groupId>org.springframework.cloud</groupId>
 			<artifactId>spring-cloud-starter-netflix-eureka-client</artifactId>
@@ -45,5 +45,4 @@
 			</plugin>
 		</plugins>
 	</build>
-
 </project>

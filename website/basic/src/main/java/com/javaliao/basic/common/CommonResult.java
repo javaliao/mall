@@ -24,10 +24,14 @@ public class CommonResult<T> {
     }
 
     /**
-     * 对象空判断
+     * @Description : 对象空判断
+     * @Author :USE
+     * @Date :9:19 2019/12/27
+     * @ClassName :CommonResult
+     * @MethodName :isEmpty
      * @param obj
-     * @return
-     */
+     * @return :boolean
+     **/
     public static boolean isEmpty(Object obj) {
         if (obj == null) {
             return true;
@@ -47,10 +51,14 @@ public class CommonResult<T> {
     }
 
     /**
-     * 判断集合或者对象是否为空
+     * @Description : 判断集合或者对象是否为空
+     * @Author :USE
+     * @Date :9:19 2019/12/27
+     * @ClassName :CommonResult
+     * @MethodName :checkNull
      * @param data
-     * @return
-     */
+     * @return :java.lang.Object
+     **/
     public static Object checkNull(Object data){
         //对象判断是否为空
         if(isEmpty(data)){
@@ -60,6 +68,15 @@ public class CommonResult<T> {
         }
     }
 
+    /**
+     * @Description : 检查是否更新成功
+     * @Author :USE
+     * @Date :9:18 2019/12/27
+     * @ClassName :CommonResult
+     * @MethodName :ckeckModify
+     * @param num
+     * @return :java.lang.Object
+     **/
     public static Object ckeckModify(int num ){
         if(num <= 0){
             return DataConstant.MODIFY_DATA_FALSE;
@@ -99,5 +116,7 @@ public class CommonResult<T> {
     public static <T> CommonResult<T> failed(IErrorCode errorCode) {
         return new CommonResult<T>(errorCode.getCode(), errorCode.getMessage(), null);
     }
+
+
 
 }

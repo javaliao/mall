@@ -1,6 +1,6 @@
 package com.javaliao.homeservice.service;
 
-import com.javaliao.homeservice.vo.ProductCategoryVo;
+import com.javaliao.basic.vo.ProductCategoryVo;
 
 import java.util.List;
 

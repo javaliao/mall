@@ -1,11 +1,12 @@
-package com.javaliao.homeservice.service;
+package com.javaliao.homeservice.service.impl;
 
 import com.javaliao.basic.mapper.TbProductCategoryMapper;
 import com.javaliao.basic.model.TbProductCategory;
 import com.javaliao.basic.model.TbProductCategoryExample;
 import com.javaliao.basic.utils.BeanClone;
 import com.javaliao.basic.utils.CollectionTool;
-import com.javaliao.homeservice.vo.ProductCategoryVo;
+import com.javaliao.homeservice.service.ProductSerivce;
+import com.javaliao.basic.vo.ProductCategoryVo;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -31,7 +32,7 @@ public class ProductServiceImpl implements ProductSerivce {
         TbProductCategoryExample.Criteria criteria = tbProductCategoryExample.createCriteria();
         criteria.andParentIdEqualTo(0L);
         List<TbProductCategory> tbProductCategoriesOne = tbProductCategoryMapper.selectByExample(tbProductCategoryExample);
-        //类型转换
+        //类型转换 
         List<ProductCategoryVo> clone = BeanClone.clone(tbProductCategoriesOne, ProductCategoryVo.class);
         if(CollectionTool.isNotEmpty(clone)){
             for (ProductCategoryVo tbProductCategory : clone) {

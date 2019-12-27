@@ -1,9 +1,11 @@
 package com.javaliao.homeweb.feign;
 
-import com.javaliao.basic.common.CommonResult;
+import com.javaliao.basic.vo.ProductCategoryVo;
 import org.springframework.cloud.openfeign.FeignClient;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+
+import java.util.List;
 
 /**
  * @Author lzw
@@ -21,5 +23,5 @@ public interface HomeFeign {
      * 注意：两个坑：1. @GetMapping不支持   2. @PathVariable和@RequestParam得设置value
      */
     @RequestMapping(value = "/productController/getProductCategory",method = RequestMethod.GET)
-    CommonResult getProductCategory();
+    List<ProductCategoryVo> getProductCategory();
 }

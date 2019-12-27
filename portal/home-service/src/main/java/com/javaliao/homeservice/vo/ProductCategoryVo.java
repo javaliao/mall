@@ -1,4 +1,4 @@
-package com.javaliao.homeservice.vo;
+package com.javaliao.basic.vo;
 
 import lombok.Data;
 import model.TbProductCategory;

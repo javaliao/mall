@@ -11,6 +11,6 @@ package com.javaliao.homeweb.service;
 
 public interface HomeService {
 
-    void getHomeInfo();
+    String getHomeInfo();
 
 }
