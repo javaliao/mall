@@ -29,7 +29,7 @@ druid监控地址：http://localhost:8085/druid/login.html。
 
 ###使用log4j作为日志文件,我配置的日志文件路径是E:\Project\PersonalProject\DistributedProject\Log\spring.log
 
-##  portal: 测试项目，SpringCould的Dalston与pringBoot的1.5.x版本测试
+##  portal: 测试项目，SpringCould的Dalston与SpringBoot的1.5.x版本测试
 
 ###该项目目前仅用于SpringCould测试，于电商项目无关，可用于对SpringCould架构测试使用
 
