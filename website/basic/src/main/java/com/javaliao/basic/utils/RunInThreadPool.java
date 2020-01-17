@@ -1,5 +1,7 @@
 package com.javaliao.basic.utils;
 
+import com.javaliao.basic.common.CommonResult;
+
 import java.lang.reflect.InvocationTargetException;
 import java.lang.reflect.Method;
 import java.util.Map;
@@ -38,7 +40,7 @@ public class RunInThreadPool implements Runnable {
             Long start = System.currentTimeMillis();
             result = method.invoke(service, param);
             Long end = System.currentTimeMillis();
-            System.out.println(String.format("%s *** 执行 ((( %s ))) 方法,耗时 <<< %s 秒 >>> 参数",
+            System.out.println(String.format("%s *** 执行 ((( %s ))) 方法,耗时 <<< %s 豪秒 >>> 参数",
                     service.getClass(),
                     method.getName(),
                     (end - start),
@@ -48,7 +50,7 @@ public class RunInThreadPool implements Runnable {
         } catch (InvocationTargetException e) {
             e.printStackTrace();
         }
-        modelMap.put(keyName, result);
+        modelMap.put(keyName, CommonResult.checkNull(result));
         countDownLatch.countDown();
     }
 }

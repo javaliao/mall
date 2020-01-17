@@ -1,5 +1,7 @@
 package com.javaliao.homeweb.service;
 
+import org.springframework.ui.ModelMap;
+
 /**
  * @Author lzw
  * @Description
@@ -11,6 +13,6 @@ package com.javaliao.homeweb.service;
 
 public interface HomeService {
 
-    String getHomeInfo();
+    ModelMap getHomeInfo(ModelMap modelMap) throws NoSuchMethodException, InterruptedException;
 
 }

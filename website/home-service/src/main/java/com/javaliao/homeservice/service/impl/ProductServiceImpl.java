@@ -1,8 +1,10 @@
 package com.javaliao.homeservice.service.impl;
 
+import com.javaliao.basic.mapper.TbAdvertisementMapper;
+import com.javaliao.basic.mapper.TbColumnMapper;
 import com.javaliao.basic.mapper.TbProductCategoryMapper;
-import com.javaliao.basic.model.TbProductCategory;
-import com.javaliao.basic.model.TbProductCategoryExample;
+import com.javaliao.basic.mapper.TbSpecialTopicMapper;
+import com.javaliao.basic.model.*;
 import com.javaliao.basic.utils.BeanClone;
 import com.javaliao.basic.utils.CollectionTool;
 import com.javaliao.homeservice.service.ProductSerivce;
@@ -25,6 +27,15 @@ public class ProductServiceImpl implements ProductSerivce {
     @Autowired
     TbProductCategoryMapper tbProductCategoryMapper;
 
+    @Autowired
+    TbSpecialTopicMapper tbSpecialTopicMapper;
+
+    @Autowired
+    TbColumnMapper tbColumnMapper;
+
+    @Autowired
+    TbAdvertisementMapper tbAdvertisementMapper;
+
     @Override
     public List<ProductCategoryVo> getProductCategory() {
         //获取一级分类
@@ -44,5 +55,20 @@ public class ProductServiceImpl implements ProductSerivce {
             }
         }
         return clone;
+    }
+
+    @Override
+    public List<TbSpecialTopic> getSpecialTopic() {
+        return tbSpecialTopicMapper.selectByExample(new TbSpecialTopicExample());
+    }
+
+    @Override
+    public List<TbColumn> getColumn() {
+        return tbColumnMapper.selectByExample(new TbColumnExample());
+    }
+
+    @Override
+    public List<TbAdvertisement> getAdvertisement() {
+        return tbAdvertisementMapper.selectByExample(new TbAdvertisementExample());
     }
 }

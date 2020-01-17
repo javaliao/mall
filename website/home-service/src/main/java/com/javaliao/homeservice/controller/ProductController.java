@@ -1,5 +1,8 @@
 package com.javaliao.homeservice.controller;
 
+import com.javaliao.basic.model.TbAdvertisement;
+import com.javaliao.basic.model.TbColumn;
+import com.javaliao.basic.model.TbSpecialTopic;
 import com.javaliao.homeservice.service.ProductSerivce;
 import com.javaliao.basic.vo.ProductCategoryVo;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -26,5 +29,20 @@ public class ProductController {
     public List<ProductCategoryVo> getProductCategory(){
         List<ProductCategoryVo> productCategory = productSerivce.getProductCategory();
         return productCategory;
+    }
+
+    @GetMapping("/getSpecialTopic")
+    public List<TbSpecialTopic> getSpecialTopic(){
+        return productSerivce.getSpecialTopic();
+    }
+
+    @GetMapping("/getColumn")
+    public List<TbColumn> getColumn(){
+        return productSerivce.getColumn();
+    }
+
+    @GetMapping("/getAdvertisement")
+    public List<TbAdvertisement> getAdvertisement(){
+        return productSerivce.getAdvertisement();
     }
 }

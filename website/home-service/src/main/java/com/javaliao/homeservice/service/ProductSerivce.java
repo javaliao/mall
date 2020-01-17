@@ -1,5 +1,8 @@
 package com.javaliao.homeservice.service;
 
+import com.javaliao.basic.model.TbAdvertisement;
+import com.javaliao.basic.model.TbColumn;
+import com.javaliao.basic.model.TbSpecialTopic;
 import com.javaliao.basic.vo.ProductCategoryVo;
 
 import java.util.List;
@@ -16,4 +19,10 @@ import java.util.List;
 public interface ProductSerivce {
 
     List<ProductCategoryVo> getProductCategory();
+
+    List<TbSpecialTopic> getSpecialTopic();
+
+    List<TbColumn> getColumn();
+
+    List<TbAdvertisement> getAdvertisement();
 }
