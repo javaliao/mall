@@ -47,7 +47,7 @@
         <dependency>
             <groupId>com.fasterxml.jackson.core</groupId>
             <artifactId>jackson-databind</artifactId>
-            <version>2.5.3</version>
+            <version>2.9.10.4</version>
         </dependency>
         <!--    spring-boot-starter-web：代表web模块，在这个模块中含了许多JAR包，-->
         <!--    有spring相关的jar，内置tomcat服务器，jackson等，这些web项目中常用的的功能都会自动引入-->
